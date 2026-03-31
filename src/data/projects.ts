@@ -27,7 +27,7 @@ export const projects: Project[] = [
       "NextReel surfaces movies and series with trailers, reviews and cast information via the TMDB API in a clean responsive interface.",
     liveUrl: "https://nextreel-orcin.vercel.app/",
     githubUrl: "",
-    tech: ["Next.js", "TMDB API", "Tailwind CSS"],
+    tech: ["React.js", "TMDB API", "Tailwind CSS"],
     features: [
       "Movie discovery powered by TMDB API",
       "Watch trailers and clips",
@@ -46,7 +46,7 @@ export const projects: Project[] = [
       "Echo is a social-impact platform that lets users create meaningful actions and collect feedback with an emphasis on community-driven value.",
     liveUrl: "https://www.echo-ng.com/",
     githubUrl: "",
-    tech: ["Next.js", "TypeScript", "Tailwind CSS"],
+    tech: ["React.js", "TypeScript", "Tailwind CSS"],
     features: [
       "Social impact platform rewarding positive action",
       "Leaders gather meaningful feedback from followers",
