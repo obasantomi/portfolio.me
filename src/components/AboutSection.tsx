@@ -53,9 +53,10 @@ export const AboutSection = () => {
         </p>
 
         <p className="mb-5 text-sm leading-8 text-slate-600 sm:text-base">
-          What you need isn&apos;t AI, you need a technically skilled engineer who knows how to use it
-          well. My strongest asset isn&apos;t any single tool; it&apos;s the
-          ability to learn fast, adapt quickly, and figure things out,
+          What you need isn&apos;t AI, you need a technically skilled engineer
+          who knows how to use it well. My strongest asset isn&apos;t any single
+          tool; it&apos;s the ability to learn fast, adapt quickly, understand
+          systems and software archietecture. and figure things out,
           independently, and with precision.
         </p>
 
