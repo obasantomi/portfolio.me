@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import profilePic from "../../public/images/IMG_6174.jpeg";
+
 
 const container = {
   hidden: { opacity: 0 },
@@ -34,7 +34,7 @@ export const HeroSection = () => {
           className="relative mb-8 h-32 w-32 overflow-hidden rounded-full border border-slate-200 shadow-lg"
         >
           <Image
-            src={profilePic}
+            src="/images/IMG_6174.jpeg"
             alt="Profile"
             fill
             className="object-cover"
