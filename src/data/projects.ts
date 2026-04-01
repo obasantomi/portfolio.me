@@ -26,7 +26,7 @@ export const projects: Project[] = [
       "Express.js",
       "JWTs",
       "OAuth",
-      "NextAUth",
+      "NextAuth",
     ],
   },
   {
