@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-
 const container = {
   hidden: { opacity: 0 },
   visible: {
@@ -60,8 +59,10 @@ export const HeroSection = () => {
           variants={item}
           className="mt-4 max-w-2xl text-sm text-slate-500 sm:text-base"
         >
-          Passionate about building clean, scalable web experiences with modern
-          tooling and AI-driven problem solving.
+          Passionate about building clean web experiences,{" "}
+          <b>
+            The kind you notice when it's done right, and miss when it's not.
+          </b>
         </motion.p>
 
         <motion.div

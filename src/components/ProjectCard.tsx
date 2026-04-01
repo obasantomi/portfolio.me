@@ -24,13 +24,22 @@ export const ProjectCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       whileHover={{ scale: 1.03 }}
-      transition={{ duration: 0.2 }}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      className={`overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition duration-200 ${
-        isDimmed ? "opacity-60 backdrop-blur-sm" : "opacity-100"
+      transition={{ duration: 0.05 }}
+      onHoverStart={onMouseEnter}
+      onHoverEnd={onMouseLeave}
+      className={`relative overflow-hidden rounded-2xl border border-slate-100 bg-white shadow-sm transition-all duration-500 ${
+        isDimmed ? "opacity-50" : "opacity-100"
       }`}
     >
+      {/* Dimming overlay */}
+      <div
+        className={`absolute inset-0 z-10 bg-white transition-opacity duration-200 pointer-events-none ${
+          isDimmed
+            ? "opacity-40 shadow-[inset_0_0_40px_10px_rgba(255,255,255,0.6)]"
+            : "opacity-0"
+        }`}
+      />
+
       <div className="relative h-44 w-full">
         <Image
           src={project.previewImage}
@@ -39,6 +48,7 @@ export const ProjectCard = ({
           className="object-cover"
           priority={false}
         />
+        <div className="absolute inset-0 " />
       </div>
       <div className="space-y-4 p-5">
         <h3 className="text-xl font-semibold text-slate-900">

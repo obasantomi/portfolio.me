@@ -6,7 +6,7 @@ import { SocialLinks } from "./SocialLinks";
 export const AboutSection = () => {
   return (
     <section
-      className="px-4 flex flex-col gap-8 pb-20 pt-10 sm:px-6 md:px-8"
+      className="px-4 flex flex-col gap-15 pb-20 pt-10 sm:px-6 md:px-8"
       id="about"
     >
       <motion.div
@@ -14,9 +14,9 @@ export const AboutSection = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="about-glow-card relative mx-auto max-w-4xl rounded-2xl bg-white p-5"
+        className="about-glow-card relative mx-auto max-w-175 rounded-2xl bg-white p-5"
       >
-        <p className="mb-5 text-sm leading-8 text-slate-600 sm:text-base">
+        <p className="mb-12 text-sm leading-8 text-slate-600 sm:text-base">
           I&apos;m a software engineer based in Lagos, Nigeria. Currently
           studying Computer Science at{" "}
           <a
@@ -30,14 +30,17 @@ export const AboutSection = () => {
           to me. It&apos;s just how I work.
         </p>
 
-        <p className="mb-5 text-sm leading-8 text-slate-600 sm:text-base">
+        <p className="mb-12 text-sm leading-8 text-slate-600 sm:text-base">
           I love building things that work beautifully — scalable software,
           clean architectures, and interfaces that feel as good as they perform.
-          The kind you notice when it's done right, and miss when it's not. I
-          care deeply about the craft.
+          <p className="pt-2">
+            I believe great products are defined by their user experience. Much
+            of that comes down to software architecture, how usable, responsive,
+            and functional the software is, beyond just how it looks.
+          </p>
         </p>
 
-        <p className="mb-5 text-sm leading-8 text-slate-600 sm:text-base">
+        <p className="mb-12 text-sm leading-8 text-slate-600 sm:text-base">
           Over the past year, I&apos;ve worked with early-stage startups,
           shipping real products with React, Next.js, TypeScript, Tailwind CSS,
           and AI integration. I&apos;ve also worked on{" "}
@@ -52,12 +55,16 @@ export const AboutSection = () => {
           communities.
         </p>
 
-        <p className="mb-5 text-sm leading-8 text-slate-600 sm:text-base">
-          What you need isn&apos;t AI, you need a technically skilled engineer
-          who knows how to use it well. My strongest asset isn&apos;t any single
-          tool; it&apos;s the ability to learn fast, adapt quickly, understand
-          systems and software archietecture. and figure things out,
-          independently, and with precision.
+        <p className="mb-12 text-sm leading-8 text-slate-600 sm:text-base">
+          <b>
+            What you need isn't a shiny piece of AI, it's a skilled hand at the
+            helm, an engineer who can turn raw intelligence into real-world
+            impact.
+          </b>{" "}
+          My strongest asset isn&apos;t any single tool; it&apos;s the ability
+          to learn fast, adapt quickly, understand systems and software
+          archietecture. and figure things out, independently, and with
+          precision.
         </p>
 
         <p className="text-sm leading-8 text-slate-600 sm:text-base">

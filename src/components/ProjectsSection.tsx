@@ -49,6 +49,35 @@ export const ProjectsSection = () => {
             />
           ))}
         </div>
+
+        {/* Backend & Tools Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-16"
+        >
+          <h3 className="mb-6 text-2xl font-bold text-slate-900">
+            Backend & Tools
+          </h3>
+          <div className="flex flex-wrap gap-3">
+            {Array.from(
+              new Set(
+                projects
+                  .filter((project) => project.backendTools)
+                  .flatMap((project) => project.backendTools!),
+              ),
+            ).map((tool) => (
+              <span
+                key={tool}
+                className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700"
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   );

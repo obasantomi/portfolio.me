@@ -61,7 +61,7 @@ export default function BackgroundAudio({
         className="rounded-md p-2 text-slate-700 hover:bg-slate-100"
         aria-label="Cycle audio volume"
       >
-        <VolumeIcon className="h-5 w-5" />
+        <VolumeIcon className="h-4 w-4" />
       </button>
     </>
   );
