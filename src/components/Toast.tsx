@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import { FaCheck } from "react-icons/fa";
 
 interface ToastProps {
   show: boolean;
@@ -10,25 +11,27 @@ interface ToastProps {
 }
 
 export default function Toast({ show, type, message, onClose }: ToastProps) {
-  const color = type === "success" ? "bg-emerald-500" : "bg-rose-500";
-
   return (
     <AnimatePresence>
       {show ? (
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 20 }}
-          transition={{ duration: 0.25 }}
-          className={`fixed bottom-5 right-5 z-50 max-w-sm rounded-lg px-4 py-3 text-white shadow-lg ${color}`}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="fixed top-5 right-5 z-50 rounded-lg bg-white px-4 py-3 shadow-lg border border-slate-200"
           role="status"
           aria-live="polite"
           onClick={onClose}
         >
-          <div className="font-semibold">
-            {type === "success" ? "Success" : "Error"}
+          <div className="flex items-center gap-2">
+            {type === "success" && (
+              <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-500">
+                <FaCheck className="h-3 w-3 text-white" />
+              </div>
+            )}
+            <span className="text-xs text-slate-600">{message}</span>
           </div>
-          <div className="text-sm">{message}</div>
         </motion.div>
       ) : null}
     </AnimatePresence>
