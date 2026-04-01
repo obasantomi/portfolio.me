@@ -33,7 +33,7 @@ export const AboutSection = () => {
         <p className="mb-12 text-sm leading-8 text-slate-600 sm:text-base">
           I love building things that work beautifully — scalable software,
           clean architectures, and interfaces that feel as good as they perform.
-          <span className="pt-2">
+          <span className="pt-2 block">
             I believe great products are defined by their user experience. Much
             of that comes down to software architecture, how usable, responsive,
             and functional the software is, beyond just how it looks.
