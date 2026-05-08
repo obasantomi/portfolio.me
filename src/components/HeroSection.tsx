@@ -115,6 +115,33 @@ export const HeroSection = () => {
                 collaborating with designers and backend engineers, and ensuring
                 a seamless user experience.
               </p>
+
+              <div>
+                I've also served as the Co-lead Creators Community at
+                <Link
+                  href={"https://hebronstartup.com/"}
+                  target="_blank "
+                  className="inline-flex items-center gap-1 group mx-1 transition-all duration-400 font-bold"
+                >
+                  <span className="hidden group-hover:block">
+                    <img
+                      src="/images/hsl.png"
+                      alt="Echo Logo"
+                      className="w-2.5 h-2.5 object-cover"
+                    />
+                  </span>
+                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-[#61CE70]">
+                    Hebron Startup Lab
+                  </span>
+                </Link>
+                <p>
+                  A community focused on fostering growth and development as a
+                  tech enthusiast. Leading a diverse group of tech-driven
+                  individuals, helping them navigate the collaborative,
+                  fast-pased environment of working within a tech startup.
+                </p>
+              </div>
+
               <p>
                 My strongest asset isn't any single tool; it's the ability to
                 learn fast, adapt quickly, understand systems and software

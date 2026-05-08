@@ -52,7 +52,6 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
         audioRef,
         volumeLevel,
         setVolumeLevel,
-        // cycleVolume,
       }}
     >
       <audio
