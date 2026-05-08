@@ -38,7 +38,7 @@ export const ProjectsSection = () => {
           Work
         </motion.h2>
 
-        <div className="mt-8 grid justify-items-start grid-cols-1 gap-y-8  md:grid-cols-2 xl:grid-cols-2">
+        <div className="mt-8 grid justify-items-center md:justify-items-start grid-cols-1 gap-y-8 gap-x-10  md:grid-cols-2 xl:grid-cols-2">
           {projects.map((project) => (
             <Link key={project.slug} href={`/projects/${project.slug}`}>
               <ProjectCard
