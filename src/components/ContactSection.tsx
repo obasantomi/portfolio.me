@@ -1,7 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaEnvelope, FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaGithub,
+  FaLinkedin,
+  FaPaperPlane,
+  FaWhatsapp,
+} from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -120,10 +126,10 @@ export const ContactSection = () => {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-4xl"
       >
-        <h2 className="mb-3 text-3xl font-bold text-slate-900">
+        <h2 className="mb-3 text-[20px] font-bold text-slate-900">
           Let&apos;s Work Together
         </h2>
-        <p className="mb-10 text-slate-600">
+        <p className="mb-10 text-[15px] text-slate-600">
           Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
         </p>
 
@@ -149,7 +155,7 @@ export const ContactSection = () => {
             </label>
             <input
               {...register("name")}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none"
               placeholder="Your name"
             />
             {errors.name && (
@@ -164,7 +170,7 @@ export const ContactSection = () => {
             <input
               type="email"
               {...register("email")}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none"
               placeholder="you@example.com"
             />
             {errors.email && (
@@ -180,12 +186,12 @@ export const ContactSection = () => {
             </label>
             <textarea
               {...register("message")}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-200"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 h-62.5 text-sm outline-none"
               rows={4}
               placeholder="Send a message with your questions, ideas, or opportunities."
             />
             {errors.message && (
-              <p className="mt-1 text-sm text-red-500">
+              <p className="mt-1 text-sm  text-red-500">
                 {errors.message.message}
               </p>
             )}
@@ -206,8 +212,9 @@ export const ContactSection = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="inline-flex items-center justify-center rounded-lg bg-linear-to-r from-pink-500 via-purple-500 to-cyan-500 px-5 py-2 text-sm font-semibold text-white transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:scale-105 disabled:cursor-not-allowed disabled:opacity-50"
           >
+            <FaPaperPlane className="h-3 w-3" />
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
         </form>

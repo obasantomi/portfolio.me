@@ -11,16 +11,26 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-inter);
 }
-.about-me {
-  font-family: var(--font-jakarta), sans-serif;
-}
 
+.font {
+  font-family: var(--font-geist), sans-serif;
+}
 
 body {
   background: #ffffff;
   color: #0f172a;
   font-family:
-    var(--font-geist-sans),
+    var(--font-geist),
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family:
+    var(--font-inter),
     system-ui,
     -apple-system,
     sans-serif;

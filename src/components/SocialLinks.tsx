@@ -1,4 +1,5 @@
-import { FaLinkedin, FaGithub } from "react-icons/fa";
+import Link from "next/link";
+import { FaLinkedin, FaGithub, FaCommentDots } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
@@ -27,19 +28,26 @@ const socials = [
 
 export const SocialLinks = () => {
   return (
-    <div className="flex justify-center flex-wrap items-center gap-2">
+    <div className="flex justify-center flex-wrap items-center gap-3">
       {socials.map(({ icon, label, href }) => (
         <a
           key={label}
           href={href}
           target={href.startsWith("http") ? "_blank" : undefined}
           rel="noopener noreferrer"
-          className="flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm text-slate-600 transition-all duration-200 hover:border-slate-400 hover:bg-slate-50 hover:text-slate-900 hover:shadow-sm"
+          className="flex items-center gap-2 rounded-full bg-[#f1f1f1] px-4 py-2 text-[12px] text-neutral-700 transition hover:bg-[#e9e9e9]"
         >
           {icon}
           {label}
         </a>
       ))}
+      <Link
+        href={"/contact"}
+        className="flex items-center gap-2 rounded-full bg-cyan-600 px-4 py-2 text-[12px] text-white transition hover:bg-cyan-700"
+      >
+        <FaCommentDots size={14} />
+        Contact me
+      </Link>
     </div>
   );
 };

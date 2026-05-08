@@ -1,4 +1,3 @@
-import { AboutSection } from "@/components/AboutSection";
 import { HeroSection } from "@/components/HeroSection";
 
 export const metadata = {
@@ -11,7 +10,6 @@ export default function HomePage() {
   return (
     <main className="bg-white text-slate-900">
       <HeroSection />
-      <AboutSection />
     </main>
   );
 }

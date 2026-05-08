@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import BackgroundAudio from "@/components/BackgroundAudio";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -39,14 +38,7 @@ export const Navbar = () => {
           </Link>
         </nav>
 
-        <div className="hidden md:block">
-          <BackgroundAudio src="https://www.victorwilliams.me/audio/bg-jazz-2.mp3" />
-        </div>
-
         <div className="flex md:hidden items-center ">
-          <div className="mr-2">
-            <BackgroundAudio src="https://www.victorwilliams.me/audio/bg-jazz-2.mp3" />
-          </div>
           <button
             aria-label="Toggle navigation"
             className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-slate-300 md:hidden"

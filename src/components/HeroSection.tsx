@@ -1,88 +1,144 @@
 "use client";
-
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
+import SoundToggle from "./SoundToogle";
+import { SocialLinks } from "./SocialLinks";
+import { ProjectsSection } from "./ProjectsSection";
+import Link from "next/link";
 
 const container = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.12,
     },
   },
 };
 
 const item = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+    },
+  },
 };
 
 export const HeroSection = () => {
   return (
-    <motion.section
-      initial="hidden"
-      animate="visible"
-      variants={container}
-      className="relative flex min-h-[calc(100vh-72px)] items-center justify-center px-4 pt-24 pb-16 sm:px-6 md:px-8"
-    >
-      <div className="mx-auto flex w-full max-w-5xl flex-col items-center text-center">
+    <section className="relative  min-h-screen overflow-hidden px-4 py-10">
+      {/* Card */}
+      <div className="relative  w-full overflow-hidden bg-white">
         <motion.div
-          variants={item}
-          className="relative mb-8 h-32 w-32 overflow-hidden rounded-full border border-slate-200 shadow-lg"
+          variants={container}
+          initial="hidden"
+          animate="visible"
+          className="mx-auto flex w-full h-full max-w-225 flex-col px-8 py-12 sm:px-14"
         >
-          <Image
-            src="/images/IMG_6174.jpeg"
-            alt="Profile"
-            fill
-            className="object-cover"
-            sizes="128px"
-          />
-        </motion.div>
-
-        <motion.h1
-          variants={item}
-          className="text-4xl font-extrabold outline-0 text-slate-900 sm:text-6xl"
-        >
-          Tomilola Obasan
-        </motion.h1>
-
-        <motion.p
-          variants={item}
-          className="mt-4 text-lg font-medium text-slate-600 sm:text-xl"
-        >
-          Software Engineer · AI Engineer · Builder
-        </motion.p>
-
-        <motion.p
-          variants={item}
-          className="mt-4 max-w-2xl text-sm text-slate-500 sm:text-base"
-        >
-          Passionate about building clean web experiences,{" "}
-          <b>
-            The kind you notice when it's done right, and miss when it's not.
-          </b>
-        </motion.p>
-
-        <motion.div
-          variants={item}
-          className="mt-8 flex flex-col gap-3 sm:flex-row"
-        >
-          <Link
-            href="/projects"
-            className="inline-flex items-center justify-center rounded-lg border border-transparent bg-linear-to-r from-pink-500 via-purple-500 to-cyan-500 px-6 py-3 text-sm font-semibold text-white transition hover:scale-105 hover:shadow-lg"
+          {/* Profile */}
+          <motion.div
+            variants={item}
+            className="flex w-full justify-between items-center gap-4"
           >
-            View Projects
-          </Link>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:scale-105 hover:bg-slate-100"
-          >
-            Contact Me
-          </Link>
+            <div className="flex items-center gap-2">
+              <div className="relative h-11.5 w-11.5 overflow-hidden rounded-full">
+                <Image
+                  src="/images/mee.jpeg"
+                  alt="Profile"
+                  fill
+                  className="object-cover"
+                  sizes="46px"
+                />
+              </div>
+              <div className="flex flex-col">
+                <h1 className="text-[20px]">Tomilola Obasan</h1>
+                <p
+                  className="text-[13px] font-semibold text-neutral-600"
+                  style={{
+                    fontFamily: "var(--font-geist-sans)",
+                  }}
+                >
+                  Frontend Engineer
+                </p>
+              </div>
+            </div>
+            <div>
+              <SoundToggle />
+            </div>
+          </motion.div>
+
+          <div className="h-full mt-7 [scrollbar-width:none] py-4">
+            <motion.div
+              variants={item}
+              className="space-y-5 text-[14px] leading-[2.1] text-neutral-700"
+              style={{
+                fontFamily: "var(--font-geist-sans)",
+              }}
+            >
+              <p>I'm a software engineer based in Lagos, Nigeria.</p>
+              <p>
+                I love building things that work beautifully — scalable
+                software, clean architectures, and interfaces that feel as good
+                as they perform. I believe great products are defined by their
+                user experience. Much of that comes down to software
+                architecture, how usable, responsive, and functional the
+                software is, beyond it just working.
+              </p>
+              <div>
+                Over the past year, I've worked with early-stage startups,
+                shipping real products with React, Next.js, TypeScript, Tailwind
+                CSS, and many UI frameworks. In my last role, I worked as the
+                front-end engineer at a startup
+                <Link
+                  href={"https://www.echo-ng.com/"}
+                  target="_blank"
+                  className="inline-flex items-center gap-1 group mx-1 transition-all duration-400 font-bold"
+                >
+                  <span className="hidden group-hover:block">
+                    <img
+                      src="/images/echo.svg"
+                      alt="Echo Logo"
+                      className="w-2.5 h-2.5 object-cover"
+                    />
+                  </span>
+                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-orange-300">
+                    Echo
+                  </span>
+                </Link>
+              </div>
+              <p>
+                Building a B2B SaaS product for organization management, where I
+                was responsible for building and maintaining the user interface,
+                collaborating with designers and backend engineers, and ensuring
+                a seamless user experience.
+              </p>
+              <p>
+                My strongest asset isn't any single tool; it's the ability to
+                learn fast, adapt quickly, understand systems and software
+                archietecture. and figure things out, independently, and with
+                precision.
+              </p>
+              <p>
+                I'm currently looking for my next full-time role or contract
+                opportunity. Ideally somewhere technical and ambitious,
+                surrounded by people who care about what they build and push
+                each other to grow.
+              </p>
+            </motion.div>
+            {/* Links */}
+          </div>
+          <motion.div variants={item} className="mt-9 flex flex-wrap gap-3">
+            <SocialLinks />
+          </motion.div>
+
+          {/* Spacer for smooth marquee looping */}
         </motion.div>
       </div>
-    </motion.section>
+
+      <ProjectsSection />
+    </section>
   );
 };

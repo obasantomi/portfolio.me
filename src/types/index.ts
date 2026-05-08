@@ -7,6 +7,7 @@ export interface Project {
   githubUrl?: string;
   tech: string[];
   features: string[];
-  previewImage: string;
+  previewImage?: string;
+  previewVideo?: string;
   backendTools?: string[];
 }

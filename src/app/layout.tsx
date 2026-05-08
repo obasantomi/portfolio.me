@@ -1,14 +1,18 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Geist } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
 import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
-
+import { AudioProvider } from "@/context/AudioContext";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
 });
 
 const playfair = Playfair_Display({
@@ -25,7 +29,7 @@ export const metadata: Metadata = {
   title: "Tomilola Obasan | Portfolio",
   description: "Portfolio website for software engineer Tomilola Obasan.",
   icons: {
-    icon: '/images/profile.jpg',
+    icon: "/images/profile.jpg",
   },
 };
 
@@ -37,12 +41,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${playfair.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${inter.variable} ${geist.variable} [scrollbar-width:none] ${playfair.variable} ${jakarta.variable} h-full antialiased`}
     >
       <body className="min-h-full bg-white font-sans text-slate-900">
-        <Navbar />
-        <div className="pt-20">{children}</div>
-        <Footer />
+        <AudioProvider>
+          <div>{children}</div>
+        </AudioProvider>
       </body>
     </html>
   );
