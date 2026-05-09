@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import {
   FaEnvelope,
+  FaFilePdf,
   FaGithub,
+  FaHome,
   FaLinkedin,
   FaPaperPlane,
   FaWhatsapp,
@@ -126,12 +128,25 @@ export const ContactSection = () => {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-4xl"
       >
-        <h2 className="mb-3 text-[20px] font-bold text-slate-900">
-          Let&apos;s Work Together
-        </h2>
-        <p className="mb-10 text-[15px] text-slate-600">
-          Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
-        </p>
+        <div className="flex justify-between items-start gap-8 flex-col md:flex-row">
+          <div>
+            <h2 className="mb-3 text-[20px] font-bold text-slate-900">
+              Let&apos;s Work Together
+            </h2>
+            <p className="mb-10 text-[15px] text-slate-600">
+              Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
+            </p>
+          </div>
+          <button>
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
+            >
+              <FaHome className="h-3 w-3" />
+              Back to Home
+            </a>
+          </button>
+        </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
           {contacts.map((item) => (
@@ -144,6 +159,18 @@ export const ContactSection = () => {
             />
           ))}
         </div>
+
+        <button className="mt-8">
+          <a
+            href="/resume/ObasantomiResume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
+          >
+            <FaFilePdf className="h-3 w-3" />
+            View My Resume
+          </a>
+        </button>
 
         <form
           onSubmit={handleSubmit(onSubmit)}
