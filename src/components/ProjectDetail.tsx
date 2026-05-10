@@ -18,7 +18,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-5xl px-4 py-24 sm:px-6 md:px-8"
       >
-        <div className="relative h-100 w-full overflow-hidden rounded-2xl border border-slate-200">
+        <div className="relative h-150 w-full overflow-hidden rounded-2xl border border-slate-200">
           {!project.previewVideo && (
             <Image
               src={project.previewImage!}

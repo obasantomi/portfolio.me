@@ -1,8 +1,13 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import { Geist } from "next/font/google";
+import {
+  Geist,
+  Inter,
+  Playfair_Display,
+  Plus_Jakarta_Sans,
+} from "next/font/google";
+
 import "./globals.css";
-import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
+
 import { AudioProvider } from "@/context/AudioContext";
 
 const inter = Inter({
@@ -41,11 +46,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geist.variable} [scrollbar-width:none] ${playfair.variable} ${jakarta.variable} h-full antialiased`}
+      className={`${inter.variable} ${geist.variable} ${playfair.variable} ${jakarta.variable} h-full antialiased [scrollbar-width:none]`}
     >
-      <body className="min-h-full bg-white font-sans text-slate-900">
+      <body className="relative min-h-screen overflow-x-hidden bg-[#f5f5f3] font-sans text-slate-900">
         <AudioProvider>
-          <div>{children}</div>
+          <main>{children}</main>
+          <div className="pointer-events-none fixed inset-x-80 -bottom-7.5 z-0 h-24 rounded-full bg-white/65 blur-xl" />
         </AudioProvider>
       </body>
     </html>

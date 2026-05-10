@@ -67,7 +67,7 @@ export const projects: Project[] = [
     ],
 
     previewImage: "/images/analytica.png",
-    previewVideo: "/videos/analytica.mp4",
+    previewVideo: "/videos/analytica-1.mp4",
     tech: [
       "Next.js",
       "TypeScript",

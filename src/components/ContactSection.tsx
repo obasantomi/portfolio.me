@@ -16,6 +16,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ContactMediaCard } from "@/components/ContactMediaCard";
 import Toast from "@/components/Toast";
+import Link from "next/link";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -138,13 +139,13 @@ export const ContactSection = () => {
             </p>
           </div>
           <button>
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
             >
               <FaHome className="h-3 w-3" />
               Back to Home
-            </a>
+            </Link>
           </button>
         </div>
 
@@ -162,7 +163,7 @@ export const ContactSection = () => {
 
         <button className="mt-8">
           <a
-            href="/resume/ObasantomiResume.pdf"
+            href="/resume/obasan-tomilola-resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
