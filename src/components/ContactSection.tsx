@@ -134,14 +134,14 @@ export const ContactSection = () => {
             <h2 className="mb-3 text-[20px] font-bold text-slate-900">
               Let&apos;s Work Together
             </h2>
-            <p className="mb-10 text-[15px] text-slate-600">
+            <p className="mb-4 text-[15px] text-slate-600">
               Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
             </p>
           </div>
           <button>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
+              className="inline-flex items-center gap-2 mb-4 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
             >
               <FaHome className="h-3 w-3" />
               Back to Home

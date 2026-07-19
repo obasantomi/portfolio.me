@@ -29,7 +29,7 @@ const item = {
 
 export const HeroSection = () => {
   return (
-    <section className="relative  min-h-screen overflow-hidden px-4 py-10">
+    <section className="relative min-h-screen overflow-hidden py-10">
       {/* Card */}
       <div className="relative  w-full overflow-hidden bg-white">
         <motion.div
@@ -46,7 +46,7 @@ export const HeroSection = () => {
             <div className="flex items-center gap-2">
               <div className="relative h-11.5 w-11.5 overflow-hidden rounded-full">
                 <Image
-                  src="/images/mee.jpeg"
+                  src="/images/tomi.jpeg"
                   alt="Profile"
                   fill
                   className="object-cover"
@@ -80,40 +80,42 @@ export const HeroSection = () => {
             >
               <p>I'm a software engineer based in Lagos, Nigeria.</p>
               <p>
-                I love building things that work beautifully — scalable
-                software, clean architectures, and interfaces that feel as good
-                as they perform. I believe great products are defined by their
-                user experience. Much of that comes down to software
-                architecture, how usable, responsive, and functional the
-                software is, beyond it just working.
+                I enjoy solving complex problems through thoughtful engineering.
+                Creating scalable applications, designing maintainable
+                architectures, and crafting user experiences that feel
+                effortless. To me, great software isn't just about working
+                correctly, it's about being reliable, responsive, accessible,
+                and genuinely enjoyable to use.
               </p>
               <div>
                 Over the past year, I've worked with early-stage startups,
                 shipping real products with React, Next.js, TypeScript, Tailwind
-                CSS, and many UI frameworks. In my last role, I worked as the
-                front-end engineer at a startup
+                CSS, and modern frontend tooling. I currently work as a Software
+                Engineer at
                 <Link
-                  href={"https://www.echo-ng.com/"}
+                  href={"https://www.leadsageafrica.com/"}
                   target="_blank"
                   className="inline-flex items-center gap-1 group mx-1 transition-all duration-400 font-bold"
                 >
-                  <span className="hidden group-hover:block">
+                  <span className="hidden bg-green-700 group-hover:block">
                     <img
-                      src="/images/echo.svg"
-                      alt="Echo Logo"
-                      className="w-2.5 h-2.5 object-cover"
+                      src="/images/logo.webp"
+                      alt="LeadSage Africa Logo"
+                      className="w-8 h-3 object-cover"
                     />
                   </span>
-                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-orange-300">
-                    Echo
+                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-green-700">
+                    LeadSage Africa
                   </span>
                 </Link>
               </div>
               <p>
-                Building a B2B SaaS product for organization management, where I
-                was responsible for building and maintaining the user interface,
-                collaborating with designers and backend engineers, and ensuring
-                a seamless user experience.
+                where I collaborate closely with designers, engineers, and
+                product teams to build and improve a PropTech platform that
+                helps Nigerians find, secure, and save toward their next home.
+                My work spans developing new features, redesigning product
+                dashboards, translating design systems into polished interfaces,
+                and contributing through collaborative GitHub workflows.
               </p>
 
               <div>
@@ -143,16 +145,13 @@ export const HeroSection = () => {
               </div>
 
               <p>
-                My strongest asset isn't any single tool; it's the ability to
-                learn fast, adapt quickly, understand systems and software
-                archietecture. and figure things out, independently, and with
-                precision.
-              </p>
-              <p>
-                I'm currently looking for my next full-time role or contract
-                opportunity. Ideally somewhere technical and ambitious,
-                surrounded by people who care about what they build and push
-                each other to grow.
+                While I'm most comfortable building with React, Next.js,
+                Node.js, TypeScript and many other tools, I believe my greatest
+                strength is my ability to understand systems deeply, learn
+                unfamiliar technologies quickly, and adapt to new challenges
+                with confidence. I enjoy working with ambitious teams that care
+                about clean architecture, thoughtful product design, and
+                building software that creates lasting impact.
               </p>
             </motion.div>
             {/* Links */}

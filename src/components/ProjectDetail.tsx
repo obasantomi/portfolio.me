@@ -19,23 +19,12 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         className="mx-auto max-w-5xl px-4 py-24 sm:px-6 md:px-8"
       >
         <div className="relative h-150 w-full overflow-hidden rounded-2xl border border-slate-200">
-          {!project.previewVideo && (
-            <Image
-              src={project.previewImage!}
-              alt={`${project.title} screenshot`}
-              fill
-              className="object-cover"
-            />
-          )}
-          {project.previewVideo && (
-            <video
-              src={project.previewVideo}
-              autoPlay
-              loop
-              muted
-              className=" w-full h-full object-cover "
-            />
-          )}
+          <Image
+            src={project.previewImage!}
+            alt={`${project.title} screenshot`}
+            fill
+            className="object-cover"
+          />
         </div>
 
         <div className="mt-8">
@@ -159,24 +148,16 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
 
           <div className="mt-8 space-y-3">
             <div className="flex flex-wrap gap-3">
-              {!(project.title === "Analytica") && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 rounded-full bg-[#f1f1f1] px-4 py-2 text-[12px] text-neutral-700 transition hover:bg-[#e9e9e9]"
-                >
-                  <FaExternalLinkAlt size={14} />
-                  View work
-                </a>
-              )}
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 rounded-full bg-[#f1f1f1] px-4 py-2 text-[12px] text-neutral-700 transition hover:bg-[#e9e9e9]"
+              >
+                <FaExternalLinkAlt size={14} />
+                View work
+              </a>
 
-              {project.title === "Analytica" && (
-                <a className="flex items-center gap-2 rounded-full bg-[#f1f1f1] px-4 py-2 text-[12px] text-neutral-700 transition hover:bg-[#e9e9e9]">
-                  <FaExternalLinkAlt size={14} />
-                  Launching Soon
-                </a>
-              )}
               <Link
                 href="/"
                 className="flex items-center gap-2 rounded-full bg-[#f1f1f1] px-4 py-2 text-[12px] text-neutral-700 transition hover:bg-[#e9e9e9]"

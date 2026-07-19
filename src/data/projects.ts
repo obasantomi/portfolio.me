@@ -53,7 +53,7 @@ export const projects: Project[] = [
     description:
       "Game Hub helps players discover and explore video games with rich metadata and filtering. Users can view game details including genre, platform, and ratings.",
     tagline: "AI guided learning with datasets",
-    liveUrl: "",
+    liveUrl: "https://analytica-app-flame.vercel.app/",
     features: [
       "Scalable full-stack architecture using Next.js, TypeScript, Prisma ORM, and PostgreSQL",
       "AI-generated analytics tasks using real-world datasets from APIs and curated sources",
@@ -66,8 +66,7 @@ export const projects: Project[] = [
       "Render PostgreSQL for scalable cloud database hosting",
     ],
 
-    previewImage: "/images/analytica.png",
-    previewVideo: "/videos/analytica-1.mp4",
+    previewImage: "/images/analytica-final.png",
     tech: [
       "Next.js",
       "TypeScript",
