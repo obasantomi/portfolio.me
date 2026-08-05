@@ -56,7 +56,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
     >
       <audio
         ref={audioRef}
-        src="https://www.victorwilliams.me/audio/bg-jazz-2.mp3"
+        src="
+https://www.odunsi.xyz/assets/audio/background-music.mp3"
         loop
         autoPlay
       />

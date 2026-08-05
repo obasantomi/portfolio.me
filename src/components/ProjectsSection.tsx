@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ToolsShowcase } from "@/components/ToolsShowcase";
 
 const container = {
   hidden: { opacity: 0 },
@@ -20,7 +21,7 @@ export const ProjectsSection = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   return (
-    <section className="px-4 pb-20 pt-5 sm:px-6 md:px-8">
+    <section className="px-4 pb-10 pt-5 sm:px-6 md:px-8">
       <motion.div
         initial="hidden"
         whileInView="visible"
@@ -52,35 +53,10 @@ export const ProjectsSection = () => {
           ))}
         </div>
 
-        {/* Backend & Tools Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mt-16"
-        >
-          <h3 className="mb-6 text-[15px] font-semibold text-slate-900">
-            Backend & Tools
-          </h3>
-          <div className="flex flex-wrap gap-5">
-            {Array.from(
-              new Set(
-                projects
-                  .filter((project) => project.backendTools)
-                  .flatMap((project) => project.backendTools!),
-              ),
-            ).map((tool) => (
-              <span
-                key={tool}
-                className="rounded-full bg-[#f1f1f1] px-4 py-2 text-[13px] text-black"
-              >
-                {tool}
-              </span>
-            ))}
-          </div>
-        </motion.div>
       </motion.div>
+        <div className="mt-30 max-w-0 mx-auto md:max-w-3xl">
+          <ToolsShowcase />
+        </div>
     </section>
   );
 };

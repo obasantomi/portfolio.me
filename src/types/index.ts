@@ -8,6 +8,9 @@ export interface Project {
   tech: string[];
   features: string[];
   previewImage?: string;
+  images?: string[];
+  demovideo?: string;
+  video?: string;
   previewVideo?: string;
   backendTools?: string[];
 }

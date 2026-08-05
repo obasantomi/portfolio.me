@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import {
   Geist,
+  IBM_Plex_Mono,
   Inter,
   Playfair_Display,
   Plus_Jakarta_Sans,
@@ -18,6 +19,13 @@ const inter = Inter({
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-geist",
+});
+
+const plexMono = IBM_Plex_Mono({
+  subsets: ["latin"],
+  weight: ["600"],
+  variable: "--font-plex-mono",
+  display: "swap",
 });
 
 const playfair = Playfair_Display({
@@ -46,7 +54,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${geist.variable} ${playfair.variable} ${jakarta.variable} h-full antialiased [scrollbar-width:none]`}
+      className={`${inter.variable} ${geist.variable} ${plexMono.variable} ${playfair.variable} ${jakarta.variable} h-full antialiased [scrollbar-width:none]`}
     >
       <body className="relative min-h-screen overflow-x-hidden bg-[#f5f5f3] font-sans text-slate-900">
         <AudioProvider>

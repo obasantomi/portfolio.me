@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import SoundToggle from "./SoundToogle";
 import { SocialLinks } from "./SocialLinks";
 import { ProjectsSection } from "./ProjectsSection";
@@ -28,8 +29,71 @@ const item = {
 };
 
 export const HeroSection = () => {
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+
+  useEffect(() => {
+    if (!isProfileOpen) {
+      return;
+    }
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow || "";
+    };
+  }, [isProfileOpen]);
+
+  useEffect(() => {
+    if (!isProfileOpen) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsProfileOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isProfileOpen]);
+
   return (
     <section className="relative min-h-screen overflow-hidden py-10">
+      <AnimatePresence>
+        {isProfileOpen ? (
+          <motion.div
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-white/70 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            />
+            <motion.button
+              type="button"
+              layoutId="hero-profile-image"
+              onClick={() => setIsProfileOpen(false)}
+              aria-label="Close profile image"
+              className="relative z-10 w-full max-w-[min(90vw,28rem)] aspect-square max-h-[min(90vh,28rem)] overflow-hidden rounded-[1.75rem] bg-white shadow-2xl ring-1 ring-slate-200"
+              style={{ cursor: "pointer" }}
+            >
+              <Image
+                src="/images/tomi.jpeg"
+                alt="Profile"
+                fill
+                className="object-cover"
+              />
+            </motion.button>
+          </motion.div>
+        ) : null}
+      </AnimatePresence>
+
       {/* Card */}
       <div className="relative  w-full overflow-hidden bg-white">
         <motion.div
@@ -44,7 +108,13 @@ export const HeroSection = () => {
             className="flex w-full justify-between items-center gap-4"
           >
             <div className="flex items-center gap-2">
-              <div className="relative h-11.5 w-11.5 overflow-hidden rounded-full">
+              <motion.button
+                type="button"
+                layoutId="hero-profile-image"
+                onClick={() => setIsProfileOpen(true)}
+                aria-label="View profile image"
+                className="relative h-11.5 w-11.5 overflow-hidden rounded-full cursor-pointer"
+              >
                 <Image
                   src="/images/tomi.jpeg"
                   alt="Profile"
@@ -52,7 +122,7 @@ export const HeroSection = () => {
                   className="object-cover"
                   sizes="46px"
                 />
-              </div>
+              </motion.button>
               <div className="flex flex-col">
                 <h1 className="text-[20px]">Tomilola Obasan</h1>
                 <p
@@ -61,7 +131,7 @@ export const HeroSection = () => {
                     fontFamily: "var(--font-geist-sans)",
                   }}
                 >
-                  Frontend Engineer
+                  Software Engineer
                 </p>
               </div>
             </div>
@@ -78,15 +148,7 @@ export const HeroSection = () => {
                 fontFamily: "var(--font-geist-sans)",
               }}
             >
-              <p>I'm a software engineer based in Lagos, Nigeria.</p>
-              <p>
-                I enjoy solving complex problems through thoughtful engineering.
-                Creating scalable applications, designing maintainable
-                architectures, and crafting user experiences that feel
-                effortless. To me, great software isn't just about working
-                correctly, it's about being reliable, responsive, accessible,
-                and genuinely enjoyable to use.
-              </p>
+              <p>I'm a Full-Stack Engineer based in Lagos, Nigeria.</p>
               <div>
                 Over the past year, I've worked with early-stage startups,
                 shipping real products with React, Next.js, TypeScript, Tailwind
@@ -95,63 +157,98 @@ export const HeroSection = () => {
                 <Link
                   href={"https://www.leadsageafrica.com/"}
                   target="_blank"
-                  className="inline-flex items-center gap-1 group mx-1 transition-all duration-400 font-bold"
+                  className="inline-flex relative items-center gap-1 group mx-1 transition-all duration-400 font-bold"
                 >
-                  <span className="hidden bg-green-700 group-hover:block">
+                  <span className="absolute left-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
                     <img
-                      src="/images/logo.webp"
+                      src="/images/LeadSage.png"
                       alt="LeadSage Africa Logo"
-                      className="w-8 h-3 object-cover"
+                      className="h-4 object-cover"
                     />
                   </span>
-                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-green-700">
+                  <span className="group-hover:translate-x-5 transform transition-transform duration-300 group-hover:text-green-700">
                     LeadSage Africa
                   </span>
                 </Link>
               </div>
               <p>
-                where I collaborate closely with designers, engineers, and
+                Where I collaborate closely with designers, engineers, and
                 product teams to build and improve a PropTech platform that
                 helps Nigerians find, secure, and save toward their next home.
-                My work spans developing new features, redesigning product
-                dashboards, translating design systems into polished interfaces,
-                and contributing through collaborative GitHub workflows.
+              </p>
+              <p>
+                My work at LeadSage spans designing and developing full-stack
+                features, building scalable backend services and APIs, crafting
+                polished user interfaces from design systems, redesigning
+                product dashboards, integrating third-party services, and
+                contributing through collaborative GitHub workflows.
+              </p>
+              <p>
+                Recently, I Designed and implemented a scalable AI chatbot using
+                Node.js, NestJS, Google GenAI, Redis Cloud, and BullMQ,
+                leveraging background workers and queue processing to deliver
+                personalized WhatsApp conversations while maintaining fast API
+                response times.
               </p>
 
               <div>
-                I've also served as the Co-lead Creators Community at
+                Previously, I worked as a Core Front-End Engineer at
                 <Link
-                  href={"https://hebronstartup.com/"}
+                  href={"https://www.echo-ng.com/"}
                   target="_blank "
-                  className="inline-flex items-center gap-1 group mx-1 transition-all duration-400 font-bold"
+                  className="inline-flex relative items-center gap-1 group mx-1 transition-all duration-400 font-bold"
                 >
-                  <span className="hidden group-hover:block">
+                  <span className="absolute left-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
                     <img
-                      src="/images/hsl.png"
+                      src="/images/echo.svg"
                       alt="Echo Logo"
-                      className="w-2.5 h-2.5 object-cover"
+                      className="h-3.5 object-cover"
                     />
                   </span>
-                  <span className="group-hover:translate-x-0.5 transform transition-transform duration-300 group-hover:text-[#61CE70]">
-                    Hebron Startup Lab
+                  <span className="group-hover:translate-x-4 transform transition-transform duration-300 group-hover:text-[#ff9c23]">
+                    Echo
                   </span>
                 </Link>
                 <p>
-                  A community focused on fostering growth and development as a
-                  tech enthusiast. Leading a diverse group of tech-driven
-                  individuals, helping them navigate the collaborative,
-                  fast-pased environment of working within a tech startup.
+                  A B2B platform that contributes to the development of a social
+                  impact platform that rewards meaningful community engagement.
                 </p>
               </div>
 
+              <div>
+                I also worked across a broader product, an AI-powered learning
+                platform called
+                <Link
+                  href={"https://analytica-app-flame.vercel.app/"}
+                  target="_blank "
+                  className="inline-flex relative items-center gap-1 group mx-1 transition-all duration-400 font-bold"
+                >
+                  <span className="absolute left-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
+                    <img
+                      src="/analytica.svg"
+                      alt="Analytica Logo"
+                      className="h-3.5 object-cover"
+                    />
+                  </span>
+                  <span className="group-hover:translate-x-4 transform transition-transform duration-300 group-hover:text-[#0d4083]">
+                    Analytica
+                  </span>
+                </Link>
+                <p>
+                  where I focused on building practical learning experiences
+                  through AI-generated analytics tasks, real-world datasets,
+                  personalized AI guidance, and performance tracking.
+                </p>
+                <p className="mt-4">
+                  More than just building features, the project pushed me to
+                  think about how software should work, how users should
+                  experience it, and how the product could scale beyond an MVP.
+                </p>
+              </div>
               <p>
-                While I'm most comfortable building with React, Next.js,
-                Node.js, TypeScript and many other tools, I believe my greatest
-                strength is my ability to understand systems deeply, learn
-                unfamiliar technologies quickly, and adapt to new challenges
-                with confidence. I enjoy working with ambitious teams that care
-                about clean architecture, thoughtful product design, and
-                building software that creates lasting impact.
+                I'm currently on the search for my next full-time role as a
+                software engineer, surrounded by really talented people who'll
+                push me to grow.
               </p>
             </motion.div>
             {/* Links */}

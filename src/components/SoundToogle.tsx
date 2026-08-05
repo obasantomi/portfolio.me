@@ -26,7 +26,7 @@ export default function SoundToggle() {
     >
       {!isPlaying ? (
         <HiSpeakerXMark
-          size={14}
+          size={16}
           className="
             text-[#2d2d2d]
             transition-colors
@@ -36,7 +36,7 @@ export default function SoundToggle() {
         />
       ) : (
         <HiSpeakerWave
-          size={14}
+          size={16}
           className="
             text-[#2d2d2d]
             transition-colors

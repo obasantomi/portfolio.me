@@ -131,22 +131,20 @@ export const ContactSection = () => {
       >
         <div className="flex justify-between items-start gap-8 flex-col md:flex-row">
           <div>
-            <h2 className="mb-3 text-[20px] font-bold text-slate-900">
+            <h2 className="text-[20px] font-bold text-slate-900">
               Let&apos;s Work Together
             </h2>
-            <p className="mb-4 text-[15px] text-slate-600">
+            <p className=" mb-4 max-w-xl text-black/50 text-xs">
               Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
             </p>
           </div>
-          <button>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 mb-4 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
-            >
-              <FaHome className="h-3 w-3" />
-              Back to Home
-            </Link>
-          </button>
+          <div className="inline-flex items-center gap-2.5 rounded-full px-3 py-2 text-sm font-semibold text-emerald-900 shadow-xs">
+            <span
+              className="inline-flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_10px_rgba(16,185,129,0.1)] animate-pulse"
+              aria-hidden="true"
+            />
+            <span>Ready for work</span>
+          </div>
         </div>
 
         <div className="grid gap-4 sm:grid-cols-2">
@@ -163,7 +161,7 @@ export const ContactSection = () => {
 
         <button className="mt-8">
           <a
-            href="/resume/OBASAN_TOMILOLA_Resume.pdf"
+            href="/resume/OBASAN_TOMILOLA_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"

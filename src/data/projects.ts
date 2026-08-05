@@ -51,7 +51,7 @@ export const projects: Project[] = [
     slug: "analytica",
     title: "Analytica",
     description:
-      "Game Hub helps players discover and explore video games with rich metadata and filtering. Users can view game details including genre, platform, and ratings.",
+      "Analytica is an AI-powered learning platform designed to help aspiring data analysts become industry-ready through realistic, hands-on analytics projects. This project reminded me that great software isn't just about making things work, it's about creating experiences that genuinely help people learn and grow. There's still plenty to improve, but I'm excited about what's next.",
     tagline: "AI guided learning with datasets",
     liveUrl: "https://analytica-app-flame.vercel.app/",
     features: [
@@ -67,6 +67,12 @@ export const projects: Project[] = [
     ],
 
     previewImage: "/images/analytica-final.png",
+    images: [
+      "/images/analytica-dashboard.png",
+      "/images/analytica-new.png",
+      "/images/analytica-details.png",
+    ],
+    video: "/videos/analytica-demo.mp4",
     tech: [
       "Next.js",
       "TypeScript",
@@ -106,6 +112,11 @@ export const projects: Project[] = [
       "Clean, responsive design",
     ],
     previewImage: "/images/next-reel.jpg",
+    images: [
+      "/images/next-reel-home.png",
+      "/images/next-reel-explore.png",
+      "/images/next-reel-specific.png",
+    ],
     backendTools: [
       "Prisma",
       "MySQL",
