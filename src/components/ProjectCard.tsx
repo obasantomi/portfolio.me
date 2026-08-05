@@ -43,8 +43,13 @@ export const ProjectCard = ({
           src={project.previewImage!}
           alt={`${project.title} preview`}
           fill
+          sizes="(max-width: 640px) 100vw, 28rem"
           className="object-cover"
-          priority={false}
+          loading={
+            project.previewImage === "/images/analytica-final.png"
+              ? "eager"
+              : "lazy"
+          }
         />
 
         <div className="absolute inset-0" />

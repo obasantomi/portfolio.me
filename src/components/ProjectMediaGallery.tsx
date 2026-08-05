@@ -71,6 +71,7 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
               src={src}
               alt={`${project.title} screenshot ${index + 1}`}
               fill
+              sizes="100vw"
               className="object-cover"
             />
           </div>
@@ -115,6 +116,7 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
                   src={selectedImage}
                   alt={`${project.title} screenshot ${selectedIndex !== null ? selectedIndex + 1 : 1}`}
                   fill
+                  sizes="100vw"
                   className="object-contain"
                 />
               </button>

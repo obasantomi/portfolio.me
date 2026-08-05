@@ -87,6 +87,7 @@ export const HeroSection = () => {
                 src="/images/tomi.jpeg"
                 alt="Profile"
                 fill
+                sizes="100vw"
                 className="object-cover"
               />
             </motion.button>
@@ -119,8 +120,8 @@ export const HeroSection = () => {
                   src="/images/tomi.jpeg"
                   alt="Profile"
                   fill
-                  className="object-cover"
                   sizes="46px"
+                  className="object-cover"
                 />
               </motion.button>
               <div className="flex flex-col">
