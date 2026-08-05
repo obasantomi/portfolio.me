@@ -72,7 +72,6 @@ export const projects: Project[] = [
       "/images/analytica-new.png",
       "/images/analytica-details.png",
     ],
-    video: "/videos/analytica-demo.mp4",
     tech: [
       "Next.js",
       "TypeScript",
