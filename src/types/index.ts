@@ -5,6 +5,7 @@ export interface Project {
   description: string;
   liveUrl: string;
   githubUrl?: string;
+  linkedinUrl?: string;
   tech: string[];
   features: string[];
   previewImage?: string;

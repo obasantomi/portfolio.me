@@ -8,7 +8,8 @@ export const projects: Project[] = [
     description:
       "Game Hub helps players discover and explore video games with rich metadata and filtering. Users can view game details including genre, platform, and ratings.",
     liveUrl: "https://game-hub-nine-neon.vercel.app/",
-    githubUrl: "",
+    githubUrl: "https://github.com/obasantomi/Game-hub.git",
+    linkedinUrl: "",
     tech: [
       "React.js",
       "Zustand",
@@ -54,6 +55,9 @@ export const projects: Project[] = [
       "Analytica is an AI-powered learning platform designed to help aspiring data analysts become industry-ready through realistic, hands-on analytics projects. This project reminded me that great software isn't just about making things work, it's about creating experiences that genuinely help people learn and grow. There's still plenty to improve, but I'm excited about what's next.",
     tagline: "AI guided learning with datasets",
     liveUrl: "https://analytica-app-flame.vercel.app/",
+    githubUrl: "https://github.com/obasantomi/Analytica-app.git",
+    linkedinUrl:
+      "https://www.linkedin.com/posts/tomilola-obasan_after-weeks-of-designing-building-refining-ugcPost-7484327790079713280-06fU/?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEm656sBcfgjvsb_6xJtnAOiFnD-j7S1hiA",
     features: [
       "Scalable full-stack architecture using Next.js, TypeScript, Prisma ORM, and PostgreSQL",
       "AI-generated analytics tasks using real-world datasets from APIs and curated sources",
@@ -93,7 +97,9 @@ export const projects: Project[] = [
     description:
       "As frontend engineers, we all know that one of the most important skills is API integration — and that's exactly what NextReel focuses on.  NextReel is a movie discovery website heavily powered by the TMDB API, while still maintaining a clean, responsive design. It gives you access to trailers, clips, reviews, cast info, ratings — basically, almost your next Netflix. It provides rich data resources like clips, reviews, cast interviews, ratings, and everything you need to make the right decision on what movie to watch next (reel).  ",
     liveUrl: "https://nextreel-orcin.vercel.app/",
-    githubUrl: "",
+    githubUrl: "https://github.com/obasantomi/NextReel.git",
+    linkedinUrl:
+      "https://www.linkedin.com/posts/tomilola-obasan_frontenddevelopment-webdevelopment-activity-7409694136531996673-Cxrb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEm656sBcfgjvsb_6xJtnAOiFnD-j7S1hiA",
     tech: [
       "React.js",
       "TMDB API",
@@ -133,7 +139,9 @@ export const projects: Project[] = [
     description:
       "Echo is a social impact platform built to reward positive action, not distraction. It helps leaders gather meaningful feedback from their followers, empowering them to build stronger, more sustainable communities.  Users don’t chase, they create waves: helpful actions and ideas that make real improvements in their environment. Impact, not profit, is at the heart of Echo.",
     liveUrl: "https://www.echo-ng.com/",
-    githubUrl: "",
+    githubUrl: "https://github.com/obasantomi/echo.git",
+    linkedinUrl:
+      "https://www.linkedin.com/posts/tomilola-obasan_reactjs-frontenddevelopment-socialimpact-activity-7403444990099759104-G_U4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEm656sBcfgjvsb_6xJtnAOiFnD-j7S1hiA",
     tech: [
       "React.js",
       "TypeScript",

@@ -56,7 +56,12 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
   }
 
   return (
-    <section className="mt-14 space-y-12">
+    <section className="mt-18 space-y-12">
+      <div className="mb-6 text-center">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
+          A Look Inside
+        </p>
+      </div>
       {images.map((src, index) => (
         <button
           key={`${src}-${index}`}

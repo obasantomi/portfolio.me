@@ -1,7 +1,7 @@
 "use client";
 
 import { HiSpeakerXMark, HiSpeakerWave } from "react-icons/hi2";
-import { useAudio } from "@/context/AudioContext";
+import { useAudio } from "@/components/context/AudioContext";
 
 export default function SoundToggle() {
   const { isPlaying, toggleAudio } = useAudio();

@@ -9,7 +9,7 @@ import {
 
 import "./globals.css";
 
-import { AudioProvider } from "@/context/AudioContext";
+import { AudioProvider } from "@/components/context/AudioContext";
 
 const inter = Inter({
   subsets: ["latin"],
