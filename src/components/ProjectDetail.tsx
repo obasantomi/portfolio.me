@@ -23,7 +23,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="mx-auto max-w-4xl px-4 py-20 sm:px-6 md:px-8"
+        className="mx-auto max-w-4xl  py-20 px-8"
       >
         <ProjectNavigation />
 

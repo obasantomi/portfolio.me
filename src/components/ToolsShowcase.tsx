@@ -53,7 +53,7 @@ export const ToolsShowcase = () => {
       </div>
 
       <div
-        className="relative overflow-hidden"
+        className="relative w-full min-w-0 overflow-hidden"
         style={{
           WebkitMaskImage:
             "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
@@ -61,7 +61,7 @@ export const ToolsShowcase = () => {
             "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
         }}
       >
-        <div className="overflow-hidden">
+        <div className="overflow-hidden mb-10">
           <div
             className="marqueeTrack whitespace-nowrap text-[14px] font-semibold tracking-[-0.01em] text-slate-600"
             style={{
@@ -74,7 +74,7 @@ export const ToolsShowcase = () => {
               return (
                 <span
                   key={`tool-1-${tool}-${index}`}
-                  className="inline-flex items-center gap-2 mx-10 opacity-90"
+                  className="inline-flex shrink-0 items-center gap-2 mx-10 opacity-90"
                 >
                   {Icon ? <Icon className="h-4 w-4 text-slate-500" /> : null}
                   <span>{tool}</span>
@@ -97,7 +97,7 @@ export const ToolsShowcase = () => {
               return (
                 <span
                   key={`tool-2-${tool}-${index}`}
-                  className="inline-flex items-center gap-2 mx-10 opacity-90"
+                  className="inline-flex shrink-0 items-center gap-2 mx-10 opacity-90"
                 >
                   {Icon ? <Icon className="h-4 w-4 text-slate-500" /> : null}
                   <span>{tool}</span>
@@ -110,8 +110,10 @@ export const ToolsShowcase = () => {
 
       <style jsx>{`
         .marqueeTrack {
-          display: inline-flex;
-          min-width: 200%;
+          display: flex;
+          align-items: center;
+          width: max-content;
+          min-width: 100%;
           animation: marqueeLeft 70s linear infinite;
           will-change: transform;
         }
@@ -121,10 +123,11 @@ export const ToolsShowcase = () => {
         }
 
         @keyframes marqueeLeft {
-          0% {
+          from {
             transform: translateX(0);
           }
-          100% {
+
+          to {
             transform: translateX(-50%);
           }
         }

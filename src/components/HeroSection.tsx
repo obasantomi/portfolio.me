@@ -6,6 +6,7 @@ import SoundToggle from "./SoundToogle";
 import { SocialLinks } from "./SocialLinks";
 import { ProjectsSection } from "./ProjectsSection";
 import Link from "next/link";
+import { ToolsShowcase } from "./ToolsShowcase";
 
 const container = {
   hidden: { opacity: 0 },
@@ -263,6 +264,10 @@ export const HeroSection = () => {
       </div>
 
       <ProjectsSection />
+
+      <div className="mt-20 mb-15 max-w-225 px-14 mx-auto w-full">
+        <ToolsShowcase />
+      </div>
     </section>
   );
 };

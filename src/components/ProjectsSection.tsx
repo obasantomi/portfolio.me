@@ -54,9 +54,7 @@ export const ProjectsSection = () => {
         </div>
 
       </motion.div>
-        <div className="mt-30 max-w-0 mx-auto md:max-w-3xl">
-          <ToolsShowcase />
-        </div>
+        
     </section>
   );
 };
