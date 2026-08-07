@@ -138,10 +138,10 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
 
         {(project.githubUrl || project.linkedinUrl) && (
           <section className="mt-10 rounded-3xl">
-            <div className="mx-auto flex items-center justify-center gap-3 py-8 max-w-[240px]">
-              <span className="h-[2px] w-12 rounded-full bg-slate-300" />
-              <span className="h-[2px] w-12 rounded-full bg-slate-300" />
-              <span className="h-[2px] w-12 rounded-full bg-slate-300" />
+            <div className="mx-auto flex items-center justify-center gap-3 py-8 max-w-60">
+              <span className="h-0.5 w-12 rounded-full bg-slate-300" />
+              <span className="h-0.5 w-12 rounded-full bg-slate-300" />
+              <span className="h-0.5 w-12 rounded-full bg-slate-300" />
             </div>
             <div className="grid gap-4 text-sm leading-7 text-slate-700">
               {project.githubUrl ? (
