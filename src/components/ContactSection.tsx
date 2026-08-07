@@ -129,7 +129,7 @@ export const ContactSection = () => {
         transition={{ duration: 0.6 }}
         className="mx-auto max-w-4xl"
       >
-        <div className="flex justify-between items-start gap-8 flex-col md:flex-row">
+        <div className="md:flex justify-between items-start gap-8 flex-col md:flex-row">
           <div>
             <h2 className="text-[20px] font-bold text-slate-900">
               Let&apos;s Work Together
@@ -138,7 +138,7 @@ export const ContactSection = () => {
               Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
             </p>
           </div>
-          <div className="inline-flex items-center gap-2.5 rounded-full px-3 py-2 text-sm font-semibold text-emerald-900 shadow-xs">
+          <div className="inline-flex my-4 mb-8 md:my-0 md:mb-0 items-center gap-2.5 rounded-full px-3 py-2 text-sm font-semibold text-emerald-900 shadow-xs">
             <span
               className="inline-flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_10px_rgba(16,185,129,0.1)] animate-pulse"
               aria-hidden="true"
