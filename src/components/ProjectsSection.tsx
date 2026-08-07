@@ -21,7 +21,7 @@ export const ProjectsSection = () => {
   const [hoveredSlug, setHoveredSlug] = useState<string | null>(null);
 
   return (
-    <section className="px-4 pb-10 pt-5 sm:px-6 md:px-8">
+    <section className="pb-10 pt-5 px-8">
       <motion.div
         initial="hidden"
         whileInView="visible"
