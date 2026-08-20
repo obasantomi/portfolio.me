@@ -61,9 +61,9 @@ export const ToolsShowcase = () => {
         className="mb-6 text-[15px] font-semibold text-slate-900"
       >
         Tools I Work With
-        <p className="text-[11px]  md:text-sm italic text-slate-500 my-5">
-          (I adapt quickly to new tools and technologies when needed. These are
-          the ones I'm most experienced with.)
+        <p className="text-[12px] md:text-sm italic text-slate-500 my-5">
+          (I adapt quickly to new tools and technologies when needed. However,
+          these are the ones I use on a day to day...)
         </p>
       </motion.div>
 
