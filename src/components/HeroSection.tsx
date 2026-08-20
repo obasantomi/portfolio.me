@@ -43,38 +43,64 @@ export const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden py-10">
       <AnimatePresence>
-        {isProfileOpen ? (
+        {isProfileOpen && (
           <motion.div
             data-lenis-prevent
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{
+              duration: 0.35,
+              ease: "easeOut",
+            }}
           >
-            <motion.div
-              className="absolute inset-0 bg-white/70 backdrop-blur-sm"
+            {/* Backdrop */}
+            <motion.button
+              type="button"
+              aria-label="Close profile image"
+              onClick={() => setIsProfileOpen(false)}
+              className="absolute inset-0 cursor-default bg-white/60 backdrop-blur-[2px]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
+
+            {/* Expanded image */}
             <motion.button
               type="button"
-              layoutId="hero-profile-image"
               onClick={() => setIsProfileOpen(false)}
               aria-label="Close profile image"
               className="relative z-10 h-28 w-28 overflow-hidden rounded-full bg-white shadow-xl ring-2 ring-white sm:h-42 sm:w-42"
-              style={{ cursor: "pointer" }}
+              initial={{
+                opacity: 0,
+                scale: 0.75,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.85,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 260,
+                damping: 22,
+                mass: 0.7,
+              }}
             >
               <Image
                 src="/images/tomi.jpeg"
                 alt="Profile"
                 fill
-                sizes="100vw"
+                sizes="128px"
                 className="object-cover"
               />
             </motion.button>
           </motion.div>
-        ) : null}
+        )}
       </AnimatePresence>
 
       {/* Card */}
