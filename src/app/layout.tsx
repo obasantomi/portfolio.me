@@ -7,9 +7,11 @@ import {
   Plus_Jakarta_Sans,
 } from "next/font/google";
 
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 import { AudioProvider } from "@/components/context/AudioContext";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -58,7 +60,9 @@ export default function RootLayout({
     >
       <body className="relative min-h-screen overflow-x-hidden bg-[#f5f5f3] font-sans text-slate-900">
         <AudioProvider>
-          <main>{children}</main>
+          <SmoothScroll>
+            <main>{children}</main>
+          </SmoothScroll>
           <div className="pointer-events-none fixed inset-x-80 -bottom-7.5 z-0 h-24 rounded-full bg-white/65 blur-xl" />
         </AudioProvider>
       </body>

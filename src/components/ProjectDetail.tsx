@@ -9,7 +9,7 @@ import { ProjectTools } from "./ProjectTools";
 import { ProjectMediaGallery } from "./ProjectMediaGallery";
 import { ProjectDemoVideo } from "./ProjectDemoVideo";
 import { BackToTop } from "./BackToTop";
-import { div } from "framer-motion/client";
+import { fadeUp, revealViewport } from "@/lib/motion";
 
 interface ProjectDetailProps {
   project: Project;
@@ -21,18 +21,25 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
   return (
     <main className="bg-white text-slate-900">
       <motion.section
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 18 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
         className="mx-auto max-w-4xl  py-20 px-8"
       >
-        <ProjectNavigation />
+        <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+          <ProjectNavigation />
+        </motion.div>
 
         <ProjectPageHeader project={project} />
 
-        <div className="mt-10 space-y-8 text-slate-700">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          className="mt-10 space-y-8 text-slate-700"
+        >
           {project.slug === "hsl-hub" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 Being an executive of the Hebron Startup Lab at Covenant
                 University, a lead at the Creators Community, which is a family
@@ -59,7 +66,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </div>
           )}
           {project.slug === "leadsage" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 At LeadSage Africa, I work on building technology that makes the
                 process of finding, securing, and saving toward a home simpler
@@ -70,16 +77,16 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               </p>
               <p>
                 A major part of my work has also involved improving the
-                platform's existing experiences. I've redesigned dashboards,
-                refined user workflows, and built features around property
-                discovery, digital leasing, housing savings, and payments,
-                always with a focus on making the product easier and more
-                intuitive for everyday users.
+                platform&apos;s existing experiences. I&apos;ve redesigned
+                dashboards, refined user workflows, and built features around
+                property discovery, digital leasing, housing savings, and
+                payments, always with a focus on making the product easier and
+                more intuitive for everyday users.
               </p>
             </div>
           )}
           {project.slug === "analytica" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 Analytica is one of my very personal projects that I built fully
                 from scratch. It is a web application that allows users to
@@ -91,18 +98,18 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 Instead of following toy tutorials, learners work with
                 real-world datasets, receive AI-guided mentorship, and get
                 feedback that reflects how professional analysts think, not just
-                whether an answer is "correct."
+                whether an answer is &ldquo;correct.&rdquo;
               </p>
               <p>
-                This project reminded me that great software isn't just about
-                making things work, it's about creating experiences that
-                genuinely help people learn and grow. There's still plenty to
-                improve, but I'm excited about what's next.
+                This project reminded me that great software isn&apos;t just
+                about making things work, it&apos;s about creating experiences
+                that genuinely help people learn and grow. There&apos;s still
+                plenty to improve, but I&apos;m excited about what&apos;s next.
               </p>
             </div>
           )}
           {project.slug === "next-reel" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 NextReel is a movie discovery website heavily powered by the
                 TMDB API, while still maintaining a clean, responsive design. It
@@ -123,13 +130,13 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </div>
           )}
           {project.slug === "echo" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 Echo is a social impact platform built to reward positive
                 action, not distraction. It helps leaders gather meaningful
                 feedback from their followers, empowering them to build
-                stronger, more sustainable communities. Users don't chase, they
-                create waves: helpful actions and ideas that make real
+                stronger, more sustainable communities. Users don&apos;t chase,
+                they create waves: helpful actions and ideas that make real
                 improvements in their environment. Impact, not profit, is at the
                 heart of Echo.
               </p>
@@ -150,7 +157,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
             </div>
           )}
           {project.slug === "game-hub" && (
-            <div className="space-y-8 text-sm">
+            <div className="space-y-4 md:space-y-8 text-[12px] md:text-sm">
               <p>
                 GameH Hub is a web application that allows users to explore and
                 discover a wide range of video games. It provides information
@@ -166,9 +173,15 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               </p>
             </div>
           )}
-        </div>
+        </motion.div>
 
-        <div className="mt-14 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={revealViewport}
+          variants={fadeUp}
+          className="mt-14 overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm"
+        >
           <div className="relative aspect-video w-full">
             <img
               src={project.previewImage ?? ""}
@@ -176,14 +189,20 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               className="h-full w-full object-cover"
             />
           </div>
-        </div>
+        </motion.div>
 
         <ProjectFeatures features={project.features} />
 
         <ProjectTools tech={project.tech} />
 
         {project.chatbotImage && (
-          <div className="mt-14 overflow-hidden rounded-md">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            variants={fadeUp}
+            className="mt-14 overflow-hidden rounded-md"
+          >
             <p className="text-[11px] text-center mb-5 font-semibold uppercase tracking-[0.2em] text-neutral-400">
               A recently developed feature
             </p>
@@ -196,7 +215,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 />
               </div>
             </div>
-            <div className="mt-10 w-full space-y-8 text-slate-700">
+            <div className="mt-10 w-full text-[12px] md:text-[16px] space-y-4 md:space-y-8 text-slate-700">
               <p>
                 Recently, LeadSage needed to launch a personalized AI assistant
                 that could communicate with users directly through WhatsApp. It
@@ -208,20 +227,27 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               </p>
               <p>
                 The result was SageAI — an assistant capable of understanding a
-                user's context and providing personalized guidance around their
-                property search, rent savings, tours, wallets, and payments. It
-                was one of those projects where I had to move quickly, make
-                architectural decisions under pressure, and take a feature from
-                an urgent requirement to a working product in a matter of days.
+                user&apos;s context and providing personalized guidance around
+                their property search, rent savings, tours, wallets, and
+                payments. It was one of those projects where I had to move
+                quickly, make architectural decisions under pressure, and take a
+                feature from an urgent requirement to a working product in a
+                matter of days.
               </p>
             </div>
-          </div>
+          </motion.div>
         )}
 
         <ProjectMediaGallery project={project} />
 
         {(project.githubUrl || project.linkedinUrl) && (
-          <section className="mt-10 rounded-3xl">
+          <motion.section
+            initial="hidden"
+            whileInView="visible"
+            viewport={revealViewport}
+            variants={fadeUp}
+            className="mt-10 rounded-3xl"
+          >
             <div className="mx-auto flex items-center justify-center gap-3 py-8 max-w-60">
               <span className="h-0.5 w-12 rounded-full bg-slate-300" />
               <span className="h-0.5 w-12 rounded-full bg-slate-300" />
@@ -257,7 +283,7 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
                 </div>
               ) : null}
             </div>
-          </section>
+          </motion.section>
         )}
 
         {demoVideoSrc ? <ProjectDemoVideo videoSrc={demoVideoSrc} /> : null}

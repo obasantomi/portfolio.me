@@ -1,5 +1,6 @@
 "use client";
 import type { ComponentType } from "react";
+import { motion } from "framer-motion";
 import {
   SiNextdotjs,
   SiReact,
@@ -21,6 +22,7 @@ import {
   SiGooglecloud,
 } from "react-icons/si";
 import { toolsIWorkWith } from "@/data/tools";
+import { fadeUp, revealViewport, staggerChildren } from "@/lib/motion";
 
 const toolIcons: Record<string, ComponentType<{ className?: string }>> = {
   "Next.js": SiNextdotjs,
@@ -47,12 +49,26 @@ export const ToolsShowcase = () => {
   const marqueeItems = [...toolsIWorkWith, ...toolsIWorkWith];
 
   return (
-    <section className="mt-16">
-      <div className="mb-6 text-[15px] font-semibold text-slate-900">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={revealViewport}
+      variants={staggerChildren}
+      className="mt-16"
+    >
+      <motion.div
+        variants={fadeUp}
+        className="mb-6 text-[15px] font-semibold text-slate-900"
+      >
         Tools I Work With
-      </div>
+        <p className="text-[11px]  md:text-sm italic text-slate-500 my-5">
+          (I adapt quickly to new tools and technologies when needed. These are
+          the ones I'm most experienced with.)
+        </p>
+      </motion.div>
 
-      <div
+      <motion.div
+        variants={fadeUp}
         className="relative w-full min-w-0 overflow-hidden"
         style={{
           WebkitMaskImage:
@@ -106,7 +122,7 @@ export const ToolsShowcase = () => {
             })}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <style jsx>{`
         .marqueeTrack {
@@ -132,6 +148,6 @@ export const ToolsShowcase = () => {
           }
         }
       `}</style>
-    </section>
+    </motion.section>
   );
 };

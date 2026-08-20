@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { IoIosLink } from "react-icons/io";
+import { motion } from "framer-motion";
 import type { Project } from "@/types";
+import { fadeUp } from "@/lib/motion";
 
 interface ProjectPageHeaderProps {
   project: Project;
@@ -10,18 +12,23 @@ interface ProjectPageHeaderProps {
 
 export function ProjectPageHeader({ project }: ProjectPageHeaderProps) {
   return (
-    <header className="mt-10 sm:mt-12">
+    <motion.header
+      initial="hidden"
+      animate="visible"
+      variants={fadeUp}
+      className="mt-10 sm:mt-12"
+    >
       <div className="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-8">
         <div className="space-y-1">
-          <h1 className="text-4xl font-semibold text-slate-950 sm:text-xl">
+          <h1 className="text-2xl md:text-4xl font-semibold text-slate-950 sm:text-xl">
             {project.title}
           </h1>
           {project.title !== "LeadSage Africa" && project.title !== "Echo" ? (
-            <p className="max-w-xl text-black/50 text-sm">
+            <p className="max-w-xl text-black/50 text-[11px] md:text-sm">
               {project.tagline} • portfolio project
             </p>
           ) : (
-            <p className="max-w-xl text-black/50 text-sm">
+            <p className="max-w-xl text-black/50 text-[11px] md:text-sm">
               {project.tagline} • Work Experience
             </p>
           )}
@@ -32,13 +39,13 @@ export function ProjectPageHeader({ project }: ProjectPageHeaderProps) {
             href={project.liveUrl ? project.liveUrl : ""}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-3xl bg-black/5 px-4 py-2 text-sm text-slate-900 transition hover:border-slate-300 hover:bg-slate-200"
+            className="inline-flex items-center gap-2 rounded-3xl bg-black/5 px-4 py-2 text-[11px] md:text-sm text-slate-900 transition hover:border-slate-300 hover:bg-slate-200"
           >
             <IoIosLink size={18} />
-            {project.liveUrl ? "View work" : "Coming soon"}
+            {project.liveUrl ? "View work" : "Coming Soon"}
           </Link>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }

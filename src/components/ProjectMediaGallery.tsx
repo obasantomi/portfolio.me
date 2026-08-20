@@ -4,6 +4,7 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import type { Project } from "@/types";
+import { fadeUp, revealViewport, staggerChildren } from "@/lib/motion";
 
 interface ProjectMediaGalleryProps {
   project: Project;
@@ -56,15 +57,22 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
   }
 
   return (
-    <section className="mt-18 space-y-12">
-      <div className="mb-6 text-center">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={revealViewport}
+      variants={staggerChildren}
+      className="mt-18 space-y-12"
+    >
+      <motion.div variants={fadeUp} className="mb-6 text-center">
         <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-neutral-400">
           A Look Inside
         </p>
-      </div>
+      </motion.div>
       {images.map((src, index) => (
-        <button
+        <motion.button
           key={`${src}-${index}`}
+          variants={fadeUp}
           type="button"
           onClick={() => openImage(index)}
           aria-label={`Open ${project.title} screenshot ${index + 1} in lightbox`}
@@ -80,13 +88,14 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
               className="object-cover"
             />
           </div>
-        </button>
+        </motion.button>
       ))}
 
       <AnimatePresence>
         {selectedImage !== null ? (
           <motion.div
             key="lightbox"
+            data-lenis-prevent
             className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -129,6 +138,6 @@ export function ProjectMediaGallery({ project }: ProjectMediaGalleryProps) {
           </motion.div>
         ) : null}
       </AnimatePresence>
-    </section>
+    </motion.section>
   );
 }

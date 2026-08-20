@@ -5,7 +5,6 @@ import {
   FaEnvelope,
   FaFilePdf,
   FaGithub,
-  FaHome,
   FaLinkedin,
   FaPaperPlane,
   FaWhatsapp,
@@ -16,7 +15,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { ContactMediaCard } from "@/components/ContactMediaCard";
 import Toast from "@/components/Toast";
-import Link from "next/link";
+import { fadeUp, staggerChildren } from "@/lib/motion";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -123,13 +122,15 @@ export const ContactSection = () => {
         onClose={() => setToastOpen(false)}
       />
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
+        initial="hidden"
+        animate="visible"
+        variants={staggerChildren}
         className="mx-auto max-w-4xl"
       >
-        <div className="md:flex justify-between items-start gap-8 flex-col md:flex-row">
+        <motion.div
+          variants={fadeUp}
+          className="flex flex-col items-start justify-between gap-8 md:flex-row"
+        >
           <div>
             <h2 className="text-[20px] font-bold text-slate-900">
               Let&apos;s Work Together
@@ -138,40 +139,44 @@ export const ContactSection = () => {
               Reach out via email, WhatsApp, or connect on GitHub/LinkedIn.
             </p>
           </div>
-          <div className="inline-flex my-4 mb-8 md:my-0 md:mb-0 items-center gap-2.5 rounded-full px-3 py-2 text-sm font-semibold text-emerald-900 shadow-xs">
+          <div className="inline-flex my-4 mb-8 md:my-0 md:mb-0 items-center gap-5 rounded-full px-3 py-2 text-sm font-semibold text-emerald-900 shadow-xs">
             <span
               className="inline-flex h-2 w-2 rounded-full bg-emerald-500 shadow-[0_0_0_10px_rgba(16,185,129,0.1)] animate-pulse"
               aria-hidden="true"
             />
-            <span>Ready for work</span>
+            <span>Available for work</span>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <motion.div
+          variants={staggerChildren}
+          className="grid gap-4 sm:grid-cols-2"
+        >
           {contacts.map((item) => (
-            <ContactMediaCard
-              key={item.label}
-              href={item.href}
-              label={item.label}
-              text={item.text}
-              Icon={item.icon}
-            />
+            <motion.div key={item.label} variants={fadeUp}>
+              <ContactMediaCard
+                href={item.href}
+                label={item.label}
+                text={item.text}
+                Icon={item.icon}
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        <button className="mt-8">
-          <a
-            href="/resume/OBASAN_TOMILOLA_CV.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
-          >
-            <FaFilePdf className="h-3 w-3" />
-            View My Resume
-          </a>
-        </button>
+        <motion.a
+          variants={fadeUp}
+          href="/resume/OBASAN_TOMILOLA_CV.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-8 inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
+        >
+          <FaFilePdf className="h-3 w-3" />
+          View My Resume
+        </motion.a>
 
-        <form
+        <motion.form
+          variants={fadeUp}
           onSubmit={handleSubmit(onSubmit)}
           className="mt-10 space-y-4 rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
         >
@@ -243,7 +248,7 @@ export const ContactSection = () => {
             <FaPaperPlane className="h-3 w-3" />
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>
-        </form>
+        </motion.form>
       </motion.div>
     </section>
   );

@@ -19,14 +19,11 @@ export const ProjectCard = ({
 }: ProjectCardProps) => {
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      whileHover={{ scale: 1.005 }}
-      transition={{ duration: 0.01 }}
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
       onHoverStart={onMouseEnter}
       onHoverEnd={onMouseLeave}
-      className={`relative overflow-hidden rounded-md p-2 border w-87.5 border-black/5 bg-white shadow-sm transition-all duration-500 ${
+      className={`relative overflow-hidden rounded-md p-2 border w-full border-black/5 bg-white shadow-sm transition-all duration-500 ${
         isDimmed ? "opacity-50" : "opacity-100"
       }`}
     >

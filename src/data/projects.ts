@@ -56,6 +56,7 @@ export const projects: Project[] = [
       "/images/analytica-dashboard.png",
       "/images/analytica-new.png",
       "/images/analytica-details.png",
+      "/images/analytica-feedback.png",
     ],
     tech: [
       "Next.js",

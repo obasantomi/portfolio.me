@@ -8,6 +8,8 @@ import {
   HiSpeakerWave,
   HiSpeakerXMark,
 } from "react-icons/hi2";
+import { motion } from "framer-motion";
+import { fadeUp, revealViewport } from "@/lib/motion";
 
 interface ProjectDemoVideoProps {
   videoSrc: string;
@@ -127,7 +129,13 @@ export function ProjectDemoVideo({ videoSrc }: ProjectDemoVideoProps) {
   };
 
   return (
-    <section className="mt-10">
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={revealViewport}
+      variants={fadeUp}
+      className="mt-10"
+    >
       <p className="text-sm font-medium uppercase tracking-[0.16em] text-slate-600">
         Demo video
       </p>
@@ -227,6 +235,6 @@ export function ProjectDemoVideo({ videoSrc }: ProjectDemoVideoProps) {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }
