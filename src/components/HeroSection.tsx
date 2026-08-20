@@ -232,8 +232,8 @@ export const HeroSection = () => {
                   .
                 </motion.p>
                 <motion.p variants={fadeUp}>
-                  I focused on building practical learning experiences through
-                  AI-generated analytics tasks, real-world datasets,
+                  Where I focused on building practical learning experiences
+                  through AI-generated analytics tasks, real-world datasets,
                   personalized AI guidance, and performance tracking.
                 </motion.p>
                 <motion.p variants={fadeUp}>
