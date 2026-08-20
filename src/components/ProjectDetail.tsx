@@ -9,6 +9,7 @@ import { ProjectTools } from "./ProjectTools";
 import { ProjectMediaGallery } from "./ProjectMediaGallery";
 import { ProjectDemoVideo } from "./ProjectDemoVideo";
 import { BackToTop } from "./BackToTop";
+import { div } from "framer-motion/client";
 
 interface ProjectDetailProps {
   project: Project;
@@ -30,6 +31,53 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
         <ProjectPageHeader project={project} />
 
         <div className="mt-10 space-y-8 text-slate-700">
+          {project.slug === "hsl-hub" && (
+            <div className="space-y-8 text-sm">
+              <p>
+                Being an executive of the Hebron Startup Lab at Covenant
+                University, a lead at the Creators Community, which is a family
+                of builders and technical individuals, I was given the
+                responsibility to lead the development of a full-stack product,
+                HSL-HUB, version 1.0.0 website.
+              </p>
+              <p>
+                Going across the frontend and backend, I wrote code, supervised
+                development across team members, and managed our GitHub
+                workflows and integration. It was a fun one-week sprint that
+                required us to move quickly, collaborate closely, and make
+                practical engineering decisions to deliver a working product.
+              </p>
+              <p>
+                The result was a successful MVP that gives members a central
+                platform to create profiles, discover and join startups,
+                collaborate with their teams, and manage tasks. I worked across
+                the entire stack, from building the user experience and API
+                architecture to implementing authentication, database models,
+                authorization, and core startup and task management
+                functionality.
+              </p>
+            </div>
+          )}
+          {project.slug === "leadsage" && (
+            <div className="space-y-8 text-sm">
+              <p>
+                At LeadSage Africa, I work on building technology that makes the
+                process of finding, securing, and saving toward a home simpler
+                for Nigerians. My work spans both frontend and backend
+                development, where I turn product ideas and Figma designs into
+                responsive, production-ready experiences using Next.js, React,
+                TypeScript, Node.js, NestJS, and Tailwind CSS.
+              </p>
+              <p>
+                A major part of my work has also involved improving the
+                platform's existing experiences. I've redesigned dashboards,
+                refined user workflows, and built features around property
+                discovery, digital leasing, housing savings, and payments,
+                always with a focus on making the product easier and more
+                intuitive for everyday users.
+              </p>
+            </div>
+          )}
           {project.slug === "analytica" && (
             <div className="space-y-8 text-sm">
               <p>
@@ -134,6 +182,42 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
 
         <ProjectTools tech={project.tech} />
 
+        {project.chatbotImage && (
+          <div className="mt-14 overflow-hidden rounded-md">
+            <p className="text-[11px] text-center mb-5 font-semibold uppercase tracking-[0.2em] text-neutral-400">
+              A recently developed feature
+            </p>
+            <div className="group overflow-hidden rounded-md">
+              <div className="relative overflow-hidden rounded-md bg-slate-50 shadow-sm transition-transform duration-300 group-hover:scale-[1.01]">
+                <img
+                  src={project.chatbotImage}
+                  alt={`${project.title} chatbot`}
+                  className="object-contain w-full"
+                />
+              </div>
+            </div>
+            <div className="mt-10 w-full space-y-8 text-slate-700">
+              <p>
+                Recently, LeadSage needed to launch a personalized AI assistant
+                that could communicate with users directly through WhatsApp. It
+                was an urgent product requirement, and I had one week to design
+                and implement the entire backend system. I built the assistant
+                using NestJS, Google Gemini, Redis Cloud, and BullMQ,
+                implementing background workers and queue processing to handle
+                AI conversations efficiently without slowing down the main API.
+              </p>
+              <p>
+                The result was SageAI — an assistant capable of understanding a
+                user's context and providing personalized guidance around their
+                property search, rent savings, tours, wallets, and payments. It
+                was one of those projects where I had to move quickly, make
+                architectural decisions under pressure, and take a feature from
+                an urgent requirement to a working product in a matter of days.
+              </p>
+            </div>
+          </div>
+        )}
+
         <ProjectMediaGallery project={project} />
 
         {(project.githubUrl || project.linkedinUrl) && (
@@ -161,14 +245,14 @@ export default function ProjectDetail({ project }: ProjectDetailProps) {
               {project.linkedinUrl ? (
                 <div className="flex flex-wrap items-center gap-2 text-slate-900">
                   <AiFillLinkedin className="h-4 w-4 text-slate-600" />
-                  <span className="font-medium">LinkedIn post:</span>
+                  <span className="font-medium">LinkedIn:</span>
                   <a
                     href={project.linkedinUrl}
                     target="_blank"
                     rel="noreferrer"
                     className="text-slate-900 underline transition hover:text-slate-700"
                   >
-                    View post
+                    View profile
                   </a>
                 </div>
               ) : null}

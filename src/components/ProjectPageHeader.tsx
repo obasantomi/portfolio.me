@@ -16,7 +16,7 @@ export function ProjectPageHeader({ project }: ProjectPageHeaderProps) {
           <h1 className="text-4xl font-semibold text-slate-950 sm:text-xl">
             {project.title}
           </h1>
-          {project.title !== "LeadSage" && project.title !== "Echo" ? (
+          {project.title !== "LeadSage Africa" && project.title !== "Echo" ? (
             <p className="max-w-xl text-black/50 text-sm">
               {project.tagline} • portfolio project
             </p>
@@ -29,13 +29,13 @@ export function ProjectPageHeader({ project }: ProjectPageHeaderProps) {
 
         <div className="flex items-start md:justify-end">
           <Link
-            href={project.liveUrl}
+            href={project.liveUrl ? project.liveUrl : ""}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-3xl bg-black/5 px-4 py-2 text-sm text-slate-900 transition hover:border-slate-300 hover:bg-slate-200"
           >
-            <IoIosLink size={14} />
-            View work
+            <IoIosLink size={18} />
+            {project.liveUrl ? "View work" : "Coming soon"}
           </Link>
         </div>
       </div>

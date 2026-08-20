@@ -161,7 +161,7 @@ export const HeroSection = () => {
                   target="_blank"
                   className="inline-flex relative items-center gap-1 group mx-1 transition-all duration-400 font-bold"
                 >
-                  <span className="absolute left-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-out">
+                  <span className="absolute left-0 opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 bg-green-500 transition-all duration-300 ease-out">
                     <img
                       src="/images/LeadSage.png"
                       alt="LeadSage Africa Logo"

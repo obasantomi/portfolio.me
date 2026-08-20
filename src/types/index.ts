@@ -13,5 +13,5 @@ export interface Project {
   demovideo?: string;
   video?: string;
   previewVideo?: string;
-  backendTools?: string[];
+  chatbotImage?: string;
 }
