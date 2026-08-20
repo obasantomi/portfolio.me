@@ -201,7 +201,6 @@ export const HeroSection = () => {
                       Echo
                     </span>
                   </Link>
-                  .
                 </motion.p>
                 <motion.p variants={fadeUp}>
                   A B2B platform that contributes to the development of a social
