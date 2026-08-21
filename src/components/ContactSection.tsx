@@ -166,7 +166,7 @@ export const ContactSection = () => {
 
         <motion.a
           variants={fadeUp}
-          href="/resume/OBASAN_TOMILOLA_CV.pdf"
+          href="/resume/Obasan_Tomilola_Resume.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="mt-8 inline-flex items-center gap-2 rounded-lg bg-linear-to-r bg-[#f1f1f1] px-5 py-2 text-sm font-semibold text-black transition hover:opacity-75"
