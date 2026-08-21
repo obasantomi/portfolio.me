@@ -11,6 +11,26 @@ import { fadeUp, staggerChildren } from "@/lib/motion";
 
 export const HeroSection = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [currentTime, setCurrentTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      setCurrentTime(
+        new Intl.DateTimeFormat("en-NG", {
+          timeZone: "Africa/Lagos",
+          hour: "numeric",
+          minute: "2-digit",
+          hour12: true,
+        }).format(new Date()),
+      );
+    };
+
+    updateTime();
+
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     if (!isProfileOpen) {
@@ -274,13 +294,10 @@ export const HeroSection = () => {
                 who&apos;ll push me to grow.
               </motion.p>
             </motion.div>
-            {/* Links */}
           </motion.div>
           <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
             <SocialLinks />
           </motion.div>
-
-          {/* Spacer for smooth marquee looping */}
         </motion.div>
       </div>
 
@@ -289,6 +306,18 @@ export const HeroSection = () => {
       <div className="mt-20 mb-15 max-w-225 px-14 mx-auto w-full">
         <ToolsShowcase />
       </div>
+
+      <footer className="mt-24 w-full max-w-225 mx-auto">
+        <div className="mx-auto flex w-full items-center justify-between px-8 sm:px-14">
+          <p className="mb-6 text-[15px] font-semibold text-slate-900">©2026</p>
+
+          <div className="flex items-center gap-2 text-[15px] font-semibold text-slate-900">
+            <span>{currentTime}</span>
+            <span className="text-neutral-700">•</span>
+            <span>WAT</span>
+          </div>
+        </div>
+      </footer>
     </section>
   );
 };

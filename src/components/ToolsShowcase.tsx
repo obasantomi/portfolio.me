@@ -61,10 +61,6 @@ export const ToolsShowcase = () => {
         className="mb-6 text-[15px] font-semibold text-slate-900"
       >
         Tools I Work With
-        <p className="text-[12px] md:text-sm italic text-slate-500 my-5">
-          (I adapt quickly to new tools and technologies when needed. However,
-          these are the ones I use on a day to day...)
-        </p>
       </motion.div>
 
       <motion.div
@@ -77,7 +73,7 @@ export const ToolsShowcase = () => {
             "linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)",
         }}
       >
-        <div className="overflow-hidden mb-10">
+        <div className="overflow-hidden mb-5 md:mb-10">
           <div
             className="marqueeTrack whitespace-nowrap text-[14px] font-semibold tracking-[-0.01em] text-slate-600"
             style={{
@@ -92,15 +88,17 @@ export const ToolsShowcase = () => {
                   key={`tool-1-${tool}-${index}`}
                   className="inline-flex shrink-0 items-center gap-2 mx-10 opacity-90"
                 >
-                  {Icon ? <Icon className="h-4 w-4 text-slate-500" /> : null}
-                  <span>{tool}</span>
+                  {Icon ? (
+                    <Icon className="h-2 w-2 md:h-4 md:w-4 text-slate-500" />
+                  ) : null}
+                  <span className="text-[10px] md:text-xs">{tool}</span>
                 </span>
               );
             })}
           </div>
         </div>
 
-        <div className="mt-4 overflow-hidden">
+        <div className="mt-2 md:mt-4 overflow-hidden">
           <div
             className="marqueeTrack marqueeReverse whitespace-nowrap text-[14px] font-semibold tracking-[-0.01em] text-slate-600"
             style={{
@@ -115,8 +113,10 @@ export const ToolsShowcase = () => {
                   key={`tool-2-${tool}-${index}`}
                   className="inline-flex shrink-0 items-center gap-2 mx-10 opacity-90"
                 >
-                  {Icon ? <Icon className="h-4 w-4 text-slate-500" /> : null}
-                  <span>{tool}</span>
+                  {Icon ? (
+                    <Icon className="h-2 w-2 md:h-4 md:w-4 text-slate-500" />
+                  ) : null}
+                  <span className="text-[10px] md:text-xs">{tool}</span>
                 </span>
               );
             })}

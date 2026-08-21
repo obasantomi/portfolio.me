@@ -100,6 +100,7 @@ export const projects: Project[] = [
     ],
     previewImage: "/images/next-reel.jpg",
     images: [
+      "/images/nextreel-hero.png",
       "/images/next-reel-home.png",
       "/images/next-reel-explore.png",
       "/images/next-reel-specific.png",
