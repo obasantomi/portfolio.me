@@ -62,36 +62,27 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden py-10">
-      <AnimatePresence>
-        {isProfileOpen && (
+       <AnimatePresence>
+        {isProfileOpen ? (
           <motion.div
             data-lenis-prevent
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{
-              duration: 0.35,
-              ease: "easeOut",
-            }}
           >
-            {/* Backdrop */}
-            <motion.button
-              type="button"
-              aria-label="Close profile image"
-              onClick={() => setIsProfileOpen(false)}
-              className="absolute inset-0 cursor-default bg-white/60 backdrop-blur-[2px]"
+            <motion.div
+              className="absolute inset-0 bg-white/70 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
-
-            {/* Expanded image */}
+             {/* Expanded image */}
             <motion.button
               type="button"
               onClick={() => setIsProfileOpen(false)}
               aria-label="Close profile image"
-              className="relative z-10 h-28 w-28 overflow-hidden rounded-full bg-white shadow-xl ring-2 ring-white sm:h-42 sm:w-42"
+              className="relative z-10 h-28 w-28 overflow-hidden rounded-full bg-white shadow-xl ring-2 ring-white sm:h-32 sm:w-32"
               initial={{
                 opacity: 0,
                 scale: 0.75,
@@ -120,8 +111,9 @@ export const HeroSection = () => {
               />
             </motion.button>
           </motion.div>
-        )}
+        ) : null}
       </AnimatePresence>
+
 
       {/* Card */}
       <div className="relative  w-full overflow-hidden bg-white">
