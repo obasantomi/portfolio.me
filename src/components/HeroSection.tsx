@@ -62,7 +62,7 @@ export const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden py-10">
-       <AnimatePresence>
+      <AnimatePresence>
         {isProfileOpen ? (
           <motion.div
             data-lenis-prevent
@@ -77,7 +77,7 @@ export const HeroSection = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             />
-             {/* Expanded image */}
+            {/* Expanded image */}
             <motion.button
               type="button"
               onClick={() => setIsProfileOpen(false)}
@@ -113,7 +113,6 @@ export const HeroSection = () => {
           </motion.div>
         ) : null}
       </AnimatePresence>
-
 
       {/* Card */}
       <div className="relative  w-full overflow-hidden bg-white">
@@ -301,7 +300,7 @@ export const HeroSection = () => {
 
       <footer className="mt-24 w-full max-w-225 mx-auto">
         <div className="mx-auto flex w-full items-center justify-between px-8 sm:px-14">
-          <p className="mb-6 text-[15px] font-semibold text-slate-900">©2026</p>
+          <p className="text-[15px] font-semibold text-slate-900">©2026</p>
 
           <div className="flex items-center gap-2 text-[15px] font-semibold text-slate-900">
             <span>{currentTime}</span>
