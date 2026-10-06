@@ -18,6 +18,7 @@ export const experience: Role[] = [
       "Made scheduled event publishing run on time, with a backup check that catches missed schedules, and added automatic compression, cropping and validation for event image uploads.",
     ],
     stack: ["Next.js", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Paystack"],
+    caseStudySlug: "tramango",
   },
   {
     company: "LeadSage Africa",

@@ -2,6 +2,94 @@ import type { Project } from "@/types";
 
 export const projects: Project[] = [
   {
+    slug: "tramango",
+    title: "Tramango",
+    tagline: "Flights, travel insurance and event tickets for Nigerian travellers",
+    summary:
+      "Full-stack work across a Nigerian travel platform, including an events guest list now live in production and a travel insurance flow I rebuilt on the Allianz API.",
+    role: "Full-stack engineer",
+    context: "Tramango",
+    year: "2026",
+    featured: true,
+    overview: [
+      "Tramango is a Nigerian travel platform where people book flights, buy travel insurance, find events and buy tickets, and book travel packages. It runs as a set of Node.js services behind an API gateway, with a Next.js web app in front.",
+      "I joined in September 2026 and work across the stack, mostly on events and insurance. I take each feature from the product brief and Figma to pull requests on both the backend and the web app, with tests, and ship it through code review to production.",
+    ],
+    highlights: [
+      "An events guest list, live in production. Creators invite free guests one by one or through shareable registration links with a sign-up limit.",
+      "Allianz travel insurance quotes that match every destination to the plan Allianz actually sells there.",
+      "A full-page insurance booking flow with saved drafts, per-field validation and a confirmation page that follows policy issuance.",
+      "Verified partner payouts with Paystack: a searchable list of Nigerian banks, with account names resolved on the server before anything is saved.",
+      "A CSV export of every event order for the finance team, restricted to super admins and protected against spreadsheet formula injection.",
+      "Scheduled event publishing that goes live on time, with a backup check every seven minutes for missed schedules.",
+      "Event image uploads that compress to under 1 MB, crop in the browser and reject unsupported formats with a clear message.",
+    ],
+    stack: ["Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Paystack", "Allianz API"],
+    links: {
+      live: "https://tramango.com",
+    },
+    cover: {
+      src: "/images/tramango-insurance-landing.png",
+      alt: "Tramango travel insurance page with quote search and popular Allianz plans",
+    },
+    gallery: [],
+    demo: {
+      capId: "5cx1v9bxzcepgfa",
+      title: "Tramango events guest list walkthrough",
+      caption: "The events guest list in production, recorded by me.",
+    },
+    spotlights: [
+      {
+        title: "A guest list that never touches ticket sales",
+        paragraphs: [
+          "Event creators needed a way to invite people for free without selling them a ticket. The hard part was the boundary: guests still need a QR ticket and a smooth check-in at the door, but they must never show up in ticket sales, revenue or payouts.",
+          "I added guests and registration links as new tables without altering any existing one. Each guest gets a zero-value purchase record that runs through the existing ticket issuance, QR and check-in pipeline unchanged, the same approach the platform already used for walk-in sales. Attendee, revenue and sales queries leave guests out.",
+          "Creators add guests one by one or share a registration link with a sign-up limit. A row lock in PostgreSQL enforces that limit, so it holds even when many people register at the same moment. Guests get their own RSVP email, and removing a guest revokes their ticket immediately.",
+          "The tests run against real PostgreSQL and Redis and include a check that ticket inventory, sales, revenue and payouts are identical before and after guests exist. On the web app I added a Guests tab for creators, a public registration page, and a fix for an Attendees tab that had always been empty.",
+        ],
+      },
+      {
+        title: "Rebuilding travel insurance on the Allianz API",
+        paragraphs: [
+          "Travel insurance is one of Tramango's core products, underwritten by Allianz Nigeria. When I picked it up, customers couldn't get a quote at all, and booking ran through a modal wizard that no longer matched the design.",
+          "I started with the Allianz integration. I mapped the 197 destinations Allianz Nigeria covers to their Allianz country IDs and the plans each one is eligible for: Schengen, Worldwide Gold, and Hajj and Umrah for Saudi Arabia. Quotes no longer fall back to a default plan, unsupported destinations get a clear message instead of a broken quote, and quotes Allianz can't actually sell, such as a zero-priced plan, are filtered out before a customer sees them.",
+          "Next I made confirmation honest. A booking is confirmed only once Allianz issues a policy number. Before, customers could receive a policy email even when issuance had failed. Now they get a plain 'policy not issued' email, staff are alerted, and the confirmation page shows the real Allianz policy number while it re-checks issuance for up to a minute.",
+          "Then I restructured the booking flow. The modal became a full-page, four-step flow: traveller details, next of kin, plan, then overview and payment. It has per-field validation for phone numbers, passports and coverage dates, a two-column layout from Figma, and a saved draft so customers can pick up where they left off. Destination search only offers countries Allianz covers, and each plan shows Allianz's published benefits and a whole-naira price.",
+        ],
+        screens: [
+          {
+            src: "/images/tramango-insurance-landing.png",
+            alt: "Tramango insurance landing page with quote search, a saved draft to resume, and popular Allianz plans",
+            caption: "Quote search, a saved draft to resume, and starting prices for popular destinations.",
+            width: 2000,
+            height: 1301,
+          },
+          {
+            src: "/images/tramango-insurance-traveller.png",
+            alt: "Traveller details step of the insurance booking flow, with passport and coverage fields",
+            caption: "Traveller details, validated field by field, beside a summary of the trip.",
+            width: 2000,
+            height: 1301,
+          },
+          {
+            src: "/images/tramango-insurance-plan.png",
+            alt: "Insurance plan step showing the Allianz Worldwide Gold plan priced in naira",
+            caption: "The plan step offers only the Allianz plan this destination is eligible for.",
+            width: 2000,
+            height: 1301,
+          },
+          {
+            src: "/images/tramango-insurance-benefits.png",
+            alt: "Insurance landing page section explaining Allianz cover, policy delivery and naira pricing",
+            caption: "What a policy covers, written in plain language on the landing page.",
+            width: 2000,
+            height: 771,
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "analytica",
     title: "Analytica",
     tagline: "An AI-powered learning platform for aspiring data analysts",
@@ -180,31 +268,6 @@ export const projects: Project[] = [
         "https://www.linkedin.com/posts/tomilola-obasan_reactjs-frontenddevelopment-socialimpact-activity-7403444990099759104-G_U4",
     },
     cover: { src: "/images/echo-home.jpg", alt: "Echo home page" },
-    gallery: [],
-  },
-  {
-    slug: "game-hub",
-    title: "Game Hub",
-    tagline: "Discover video games by genre, platform and rating",
-    summary: "A game discovery app on the RAWG API with filtering, global state in Zustand and typed validation.",
-    role: "Solo build",
-    context: "Personal build",
-    overview: [
-      "Game Hub helps players explore video games with rich metadata, including genres, platforms, release dates and ratings.",
-      "I focused on API integration, reusable components and clean frontend architecture, with careful loading and error states, search and filtering.",
-    ],
-    highlights: [
-      "Dynamic game data from the RAWG API.",
-      "Filtering by genre, platform and rating.",
-      "Global state with Zustand.",
-      "Type-safe development with TypeScript and Zod.",
-    ],
-    stack: ["React", "TypeScript", "Zustand", "Zod", "Chakra UI", "RAWG API"],
-    links: {
-      live: "https://game-hub-nine-neon.vercel.app/",
-      github: "https://github.com/obasantomi/Game-hub.git",
-    },
-    cover: { src: "/images/game-hub.jpg", alt: "Game Hub game grid" },
     gallery: [],
   },
 ];
