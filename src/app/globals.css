@@ -114,6 +114,31 @@ body {
   }
 }
 
+/*
+ * Availability signal in the hero: a glint runs along a short accent line,
+ * then rests before the next pass. Reduced motion shows a solid line instead.
+ */
+.availability-signal::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 45%;
+  border-radius: inherit;
+  background: var(--accent);
+  animation: availability-glint 3.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes availability-glint {
+  0% {
+    transform: translateX(-100%);
+  }
+  55%,
+  100% {
+    transform: translateX(225%);
+  }
+}
+
 /* Native <dialog> used for the demo video player. */
 dialog.video-dialog {
   opacity: 0;
@@ -165,5 +190,11 @@ dialog.video-dialog[open]::backdrop {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .availability-signal::after {
+    width: 100%;
+    animation: none !important;
+    transform: none;
   }
 }
