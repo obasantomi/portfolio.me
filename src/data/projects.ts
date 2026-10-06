@@ -240,6 +240,7 @@ export const projects: Project[] = [
       { src: "/images/hsl-profile.png", alt: "A member profile in HSL Hub" },
       { src: "/images/hsl-loading.png", alt: "HSL Hub loading state" },
     ],
+    demo: { capId: "pnj15j8tavnz56g", title: "HSL Hub product walkthrough" },
   },
   {
     slug: "echo",
