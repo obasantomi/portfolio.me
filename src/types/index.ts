@@ -3,10 +3,28 @@ export interface ImageAsset {
   alt: string;
 }
 
+/** A screenshot shown at its natural aspect ratio, with an optional caption. */
+export interface Screen extends ImageAsset {
+  width: number;
+  height: number;
+  caption?: string;
+}
+
 export interface DemoVideo {
   /** Share id from a cap.so link, e.g. cap.so/s/<id>. */
   capId: string;
   title: string;
+  /** Shown under the inline player. Defaults to a walkthrough of the whole product. */
+  caption?: string;
+}
+
+/** A deeper write-up of one piece of the work, shown on the case study. */
+export interface Spotlight {
+  title: string;
+  /** An animated diagram shown beside the write-up. */
+  diagram?: "sageai-pipeline";
+  paragraphs: string[];
+  screens?: Screen[];
 }
 
 export interface ProjectLinks {
@@ -32,14 +50,7 @@ export interface Project {
   cover: ImageAsset;
   gallery: ImageAsset[];
   demo?: DemoVideo;
-  /** A deeper write-up of one piece of the project, shown on the case study. */
-  spotlight?: {
-    title: string;
-    /** An animated diagram shown beside the write-up. */
-    diagram?: "sageai-pipeline";
-    image?: ImageAsset;
-    paragraphs: string[];
-  };
+  spotlights?: Spotlight[];
 }
 
 export interface Role {

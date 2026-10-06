@@ -73,16 +73,20 @@ export const projects: Project[] = [
       { src: "/images/sagenest.png", alt: "LeadSage SageNest in light mode" },
       { src: "/images/sagenestDark.png", alt: "LeadSage SageNest in dark mode" },
     ],
-    spotlight: {
-      title: "SageAI: from urgent requirement to resilient product in a week",
-      diagram: "sageai-pipeline",
-      image: { src: "/images/leadsage-chat-1.png", alt: "A SageAI conversation on WhatsApp" },
-      paragraphs: [
-        "LeadSage needed a personalised assistant that could talk to users directly on WhatsApp, and it was urgent. I had one week to design and build the backend.",
-        "I built it on NestJS, Gemini, Redis and BullMQ. Incoming messages go onto a queue and a separate worker handles the AI conversation, so slow model calls never hold up the main API. The assistant understands each user's context and helps with property search, rent savings, tours, wallets and payments.",
-        "As it grew, I made it resilient. Redis-based debouncing merges rapid-fire messages into one clean turn, transient Gemini failures retry with jittered backoff, and users get a clear message instead of silence when something goes wrong.",
-      ],
-    },
+    spotlights: [
+      {
+        title: "SageAI: from urgent requirement to resilient product in a week",
+        diagram: "sageai-pipeline",
+        paragraphs: [
+          "LeadSage needed a personalised assistant that could talk to users directly on WhatsApp, and it was urgent. I had one week to design and build the backend.",
+          "I built it on NestJS, Gemini, Redis and BullMQ. Incoming messages go onto a queue and a separate worker handles the AI conversation, so slow model calls never hold up the main API. The assistant understands each user's context and helps with property search, rent savings, tours, wallets and payments.",
+          "As it grew, I made it resilient. Redis-based debouncing merges rapid-fire messages into one clean turn, transient Gemini failures retry with jittered backoff, and users get a clear message instead of silence when something goes wrong.",
+        ],
+        screens: [
+          { src: "/images/leadsage-chat-1.png", alt: "A SageAI conversation on WhatsApp", width: 2870, height: 1968 },
+        ],
+      },
+    ],
   },
   {
     slug: "next-reel",
