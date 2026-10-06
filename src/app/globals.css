@@ -115,27 +115,39 @@ body {
 }
 
 /*
- * Availability signal in the hero: a glint runs along a short accent line,
- * then rests before the next pass. Reduced motion shows a solid line instead.
+ * Availability signal in the hero: an accent arc travels around the capsule's
+ * hairline border without stopping, echoing the monogram's orbit. The border
+ * ring is masked out of a rotating conic gradient. Reduced motion stops the arc.
  */
-.availability-signal::after {
-  content: "";
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  width: 45%;
-  border-radius: inherit;
-  background: var(--accent);
-  animation: availability-glint 3.6s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+@property --signal-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
 }
 
-@keyframes availability-glint {
-  0% {
-    transform: translateX(-100%);
-  }
-  55%,
-  100% {
-    transform: translateX(225%);
+.availability-signal::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  padding: 1.5px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--signal-angle),
+    transparent 0deg 250deg,
+    color-mix(in srgb, var(--accent) 35%, transparent) 300deg,
+    var(--accent) 350deg,
+    transparent 360deg
+  );
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+  pointer-events: none;
+  animation: signal-orbit 3.2s linear infinite;
+}
+
+@keyframes signal-orbit {
+  to {
+    --signal-angle: 360deg;
   }
 }
 
@@ -192,9 +204,7 @@ dialog.video-dialog[open]::backdrop {
     scroll-behavior: auto !important;
   }
 
-  .availability-signal::after {
-    width: 100%;
+  .availability-signal::before {
     animation: none !important;
-    transform: none;
   }
 }

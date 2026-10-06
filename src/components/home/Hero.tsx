@@ -51,12 +51,11 @@ export function Hero() {
           variants={fadeIn}
           className="flex flex-wrap items-center gap-x-4 gap-y-2"
         >
-          <a href="#contact" className="group inline-flex min-h-10 items-center gap-3 text-sm font-medium text-fg">
-            <span
-              aria-hidden
-              className="availability-signal relative h-0.5 w-7 overflow-hidden rounded-full bg-accent/40 transition-[width] duration-300 ease-out group-hover:w-10"
-            />
-            <span className="transition-colors duration-200 group-hover:text-accent">{profile.availability}</span>
+          <a
+            href="#contact"
+            className="availability-signal relative inline-flex min-h-10 items-center rounded-full border border-line bg-surface/70 px-4 text-sm font-medium text-fg backdrop-blur-sm transition-colors duration-200 hover:bg-surface-2"
+          >
+            {profile.availability}
           </a>
           <p className="text-sm text-muted">
             {profile.name}. Based in Lagos, Nigeria, and open to remote work.
