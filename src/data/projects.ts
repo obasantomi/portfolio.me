@@ -250,7 +250,7 @@ export const projects: Project[] = [
       "Responsive React interfaces for a platform that helps leaders gather meaningful feedback from their communities.",
     role: "Front-end engineer",
     context: "Echo",
-    year: "2025",
+    year: "2025–2026",
     overview: [
       "Echo helps leaders gather meaningful feedback from their followers so they can build stronger communities. Instead of chasing attention, users create waves: helpful actions and ideas that improve their environment.",
       "I built responsive, scalable interfaces with React, TypeScript and Zod, working closely with designers and backend engineers to turn product ideas into polished features.",

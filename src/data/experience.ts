@@ -42,7 +42,7 @@ export const experience: Role[] = [
     company: "Echo",
     companyUrl: "https://www.echo-ng.com/",
     title: "Front-End Engineer",
-    period: "Oct 2025",
+    period: "Oct 2025 – Sep 2026",
     location: "Lagos",
     description:
       "A social impact platform that helps leaders gather feedback from their communities and rewards positive action.",
