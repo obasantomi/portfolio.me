@@ -13,7 +13,7 @@ function FeaturedProject({ project, reversed }: { project: Project; reversed: bo
   return (
     <article className="grid items-center gap-8 lg:grid-cols-12 lg:gap-12">
       <Link
-        href={`/projects/${project.slug}`}
+        href={`/work/${project.slug}`}
         className={cx("group block lg:col-span-7", reversed && "lg:order-2")}
         aria-label={`${project.title} case study`}
         tabIndex={-1}
@@ -31,7 +31,7 @@ function FeaturedProject({ project, reversed }: { project: Project; reversed: bo
           {project.year ? `, ${project.year}` : null}
         </p>
         <h3 className="mt-2 font-display text-3xl tracking-[-0.02em] md:text-4xl">
-          <Link href={`/projects/${project.slug}`} className="transition-colors hover:text-accent">
+          <Link href={`/work/${project.slug}`} className="transition-colors hover:text-accent">
             {project.title}
           </Link>
         </h3>
@@ -42,7 +42,7 @@ function FeaturedProject({ project, reversed }: { project: Project; reversed: bo
         </p>
         <StackList items={project.stack.slice(0, 6)} className="mt-5" />
         <div className="mt-7 flex flex-wrap gap-3">
-          <ButtonLink href={`/projects/${project.slug}`}>Read the case study</ButtonLink>
+          <ButtonLink href={`/work/${project.slug}`}>Read the case study</ButtonLink>
           {project.demo ? <CapVideoDialogButton video={project.demo} /> : null}
           {!project.demo && project.links.live ? (
             <ButtonLink href={project.links.live} variant="secondary" external>
@@ -72,8 +72,11 @@ export function WorkSection() {
         </div>
 
         <div className="mt-24 md:mt-32">
-          <h3 className="font-display text-xl tracking-[-0.02em]">More projects</h3>
+          <h3 className="font-display text-xl tracking-[-0.02em]">More work</h3>
           <ProjectList projects={otherProjects} />
+          <ButtonLink href="/work" variant="secondary" className="mt-10">
+            View all work
+          </ButtonLink>
         </div>
       </Container>
     </section>

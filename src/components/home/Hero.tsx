@@ -16,9 +16,9 @@ const headline = [
 
 const ledger = [
   { label: "Now", name: "Tramango", detail: "Full-stack engineer, travel", href: "#experience" },
-  { label: "Now", name: "LeadSage Africa", detail: "Full-stack engineer, PropTech and fintech", href: "/projects/leadsage" },
-  { label: "Built", name: "Analytica", detail: "An AI learning platform, solo", href: "/projects/analytica" },
-  { label: "Shipped", name: "SageAI", detail: "A WhatsApp AI assistant, built in a week", href: "/projects/leadsage" },
+  { label: "Now", name: "LeadSage Africa", detail: "Full-stack engineer, PropTech and fintech", href: "/work/leadsage" },
+  { label: "Built", name: "Analytica", detail: "An AI learning platform, solo", href: "/work/analytica" },
+  { label: "Shipped", name: "SageAI", detail: "A WhatsApp AI assistant, built in a week", href: "/work/leadsage" },
 ];
 
 const lineReveal = {

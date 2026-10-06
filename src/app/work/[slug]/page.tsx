@@ -7,13 +7,13 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export async function generateMetadata(props: PageProps<"/projects/[slug]">): Promise<Metadata> {
+export async function generateMetadata(props: PageProps<"/work/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
   const project = getProject(slug);
-  if (!project) return { title: "Project not found" };
+  if (!project) return { title: "Work not found" };
 
   const title = `${project.title} case study`;
-  const url = `/projects/${project.slug}`;
+  const url = `/work/${project.slug}`;
   const images = [{ url: encodeURI(project.cover.src), alt: project.cover.alt }];
 
   return {
@@ -25,7 +25,7 @@ export async function generateMetadata(props: PageProps<"/projects/[slug]">): Pr
   };
 }
 
-export default async function ProjectPage(props: PageProps<"/projects/[slug]">) {
+export default async function ProjectPage(props: PageProps<"/work/[slug]">) {
   const { slug } = await props.params;
   const project = getProject(slug);
   if (!project) notFound();

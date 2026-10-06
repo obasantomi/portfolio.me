@@ -60,7 +60,7 @@ function RoleEntry({ role }: { role: Role }) {
 
       {role.caseStudySlug ? (
         <Link
-          href={`/projects/${role.caseStudySlug}`}
+          href={`/work/${role.caseStudySlug}`}
           className="group mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-accent"
         >
           Read the {role.company} case study

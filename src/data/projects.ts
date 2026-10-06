@@ -91,7 +91,7 @@ export const projects: Project[] = [
     summary:
       "Trailers, cast, reviews and recommendations from several TMDB endpoints, with infinite loading and debounced search.",
     role: "Solo build",
-    context: "Personal project",
+    context: "Personal build",
     overview: [
       "API integration is one of the most important frontend skills, and NextReel is built around it. It pulls trailers, clips, reviews, cast details, ratings and recommendations from the TMDB API to help you decide what to watch next.",
       "The focus was on making a data-heavy app feel fast: infinite queries for smooth loading and caching, a debounced search that avoids wasted requests, and clear loading, error and empty states throughout.",
@@ -184,7 +184,7 @@ export const projects: Project[] = [
     tagline: "Discover video games by genre, platform and rating",
     summary: "A game discovery app on the RAWG API with filtering, global state in Zustand and typed validation.",
     role: "Solo build",
-    context: "Personal project",
+    context: "Personal build",
     overview: [
       "Game Hub helps players explore video games with rich metadata, including genres, platforms, release dates and ratings.",
       "I focused on API integration, reusable components and clean frontend architecture, with careful loading and error states, search and filtering.",

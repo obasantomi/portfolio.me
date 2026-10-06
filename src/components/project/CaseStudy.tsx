@@ -37,11 +37,11 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
     <article>
       <Container className="pt-28 md:pt-32">
         <Link
-          href="/projects"
+          href="/work"
           className="group inline-flex items-center gap-2 text-sm text-muted transition-colors hover:text-fg"
         >
           <HiArrowLeft aria-hidden className="size-3.5 transition-transform duration-200 group-hover:-translate-x-1" />
-          All projects
+          All work
         </Link>
 
         <header className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-end">
@@ -167,10 +167,10 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
         ) : null}
       </Container>
 
-      <Link href={`/projects/${nextProject.slug}`} className="group block border-t border-line">
+      <Link href={`/work/${nextProject.slug}`} className="group block border-t border-line">
         <Container className="flex items-end justify-between gap-6 py-16 md:py-24">
           <div>
-            <p className="text-sm text-muted">Next project</p>
+            <p className="text-sm text-muted">Next case study</p>
             <p className="mt-2 font-display text-[clamp(2rem,5vw,3.75rem)] leading-none tracking-[-0.02em] transition-colors duration-200 group-hover:text-accent">
               {nextProject.title}
             </p>

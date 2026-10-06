@@ -43,7 +43,7 @@ export function ProjectList({ projects }: { projects: Project[] }) {
         {projects.map((project) => (
           <li key={project.slug} className="border-b border-line">
             <Link
-              href={`/projects/${project.slug}`}
+              href={`/work/${project.slug}`}
               onPointerEnter={(event) => {
                 if (event.pointerType === "mouse") setHovered(project);
               }}
