@@ -17,8 +17,8 @@ const headline = [
 const ledger = [
   { label: "Now", name: "Tramango", detail: "Full-stack engineer, travel", href: "/work/tramango" },
   { label: "Now", name: "LeadSage Africa", detail: "Full-stack engineer, PropTech and fintech", href: "/work/leadsage" },
+  { label: "Now", name: "Korabytes", detail: "Lead community manager, built the site", href: "/work/korabytes" },
   { label: "Built", name: "Analytica", detail: "An AI learning platform, solo", href: "/work/analytica" },
-  { label: "Shipped", name: "SageAI", detail: "A WhatsApp AI assistant, built in a week", href: "/work/leadsage" },
 ];
 
 const lineReveal = {
@@ -86,9 +86,9 @@ export function Hero() {
         <div className="grid grid-cols-1 gap-10 border-t border-line pt-8 lg:grid-cols-12 lg:gap-12">
           <motion.div initial="hidden" animate="visible" custom={0.6} variants={fadeIn} className="lg:col-span-5">
             <p className="max-w-lg text-lg leading-relaxed text-pretty text-muted">
-              I&apos;m Tomilola. I own features end to end, from Figma and React to NestJS services, queues,
-              databases and payment integrations. Recently I built SageAI, a WhatsApp assistant on Gemini and
-              BullMQ, and Paystack-verified partner payouts for Tramango&apos;s events platform.
+              I&apos;m Tomilola. I own features end to end, from design to frontend to backend microservices, through to the CI/CD,
+              Docker and Kubernetes setup that keeps them reliable all day. Recently I built SageAI, a WhatsApp assistant on Gemini and BullMQ, and the Korabytes
+              community site on a tight deadline.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <ButtonLink href="#work">See my work</ButtonLink>
