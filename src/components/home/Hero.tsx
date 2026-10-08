@@ -86,9 +86,9 @@ export function Hero() {
         <div className="grid grid-cols-1 gap-10 border-t border-line pt-8 lg:grid-cols-12 lg:gap-12">
           <motion.div initial="hidden" animate="visible" custom={0.6} variants={fadeIn} className="lg:col-span-5">
             <p className="max-w-lg text-lg leading-relaxed text-pretty text-muted">
-              I&apos;m Tomilola. I own features end to end, from design to frontend to backend microservices, through to the CI/CD,
-              Docker and Kubernetes setup that keeps them reliable all day. Recently I built SageAI, a WhatsApp assistant on Gemini and BullMQ, and the Korabytes
-              community site on a tight deadline.
+              I&apos;m Tomilola. I own features end to end, from design to frontend to backend microservices, through to the CI/CD pipelines,
+              Docker and Kubernetes setup that keeps them reliable all day. Recently I built SageAI, LeadSage Africa&apos;s WhatsApp AI assistant on Gemini and Worker processes, and the Korabytes
+              community site, both on a tight deadline.
             </p>
             <div className="mt-7 flex flex-wrap items-center gap-3">
               <ButtonLink href="#work">See my work</ButtonLink>

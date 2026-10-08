@@ -40,12 +40,12 @@ export function AboutSection() {
               </p>
               <p>
                 My background is in Computer Science at {profile.education.school}, and I&apos;ve shipped production
-                software in travel, PropTech, fintech and social impact, mostly in TypeScript across React, Next.js,
+                software in travel, PropTech, fintech and social impact, mostly in TypeScript across React, Express, Next.js,
                 Node.js and NestJS.
               </p>
               <p>
                 At Tramango I work on a microservices architecture, and I care about what happens after the merge:
-                CI/CD workflows, Docker, Kubernetes deployment configuration, and tuning nodes and pods so the product
+                CI/CD pipelines, Docker, Kubernetes deployment configuration, and tuning nodes and pods so the product
                 stays reliable all day long.
               </p>
               <p>
