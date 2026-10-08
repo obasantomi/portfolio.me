@@ -90,6 +90,92 @@ export const projects: Project[] = [
     ],
   },
   {
+    slug: "korabytes",
+    title: "Korabytes",
+    tagline: "The Covenant University community for student builders, backed by Kora",
+    summary:
+      "I lead the Korabytes community, and when it needed a home online fast, I designed and built a clean, modern site with a CMS, publish webhooks and Tally applications.",
+    role: "Lead community manager, designed and built the site",
+    context: "Korabytes, backed by Kora",
+    year: "2026",
+    featured: true,
+    overview: [
+      "Korabytes is a community of student founders, creatives and tech enthusiasts at Covenant University, backed by Kora. Whether you're running a small business, launching a startup or just curious about how fintech works, it's a space to learn, grow and get ahead.",
+      "I'm the lead community manager. We needed a site before the alpha cohort opened, and there wasn't much time, so I took it on myself: a clean, modern UI, a CMS the exec team can publish from, and an application flow wired into the tools we already use.",
+    ],
+    highlights: [
+      "A modern landing page with its own design system, light and dark themes, and restrained motion that respects reduced-motion settings.",
+      "Events and announcements managed in Sanity, with the Studio embedded in the site so editors publish from the same domain.",
+      "A signed Sanity webhook that refreshes cached pages the moment a post is published, with an hourly fallback.",
+      "Applications through an embedded Tally form, so the exec team reviews submissions where they already work and the site stores no personal data.",
+      "Event pages with registration, share links and an add-to-calendar download that marks cancelled events.",
+    ],
+    stack: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Motion", "Sanity", "Tally", "Vercel"],
+    links: {
+      live: "https://korabytes.vercel.app/",
+      instagram: "https://www.instagram.com/korabytes_cu/",
+    },
+    cover: {
+      src: "/images/korabytes-hero-dark.png",
+      alt: "Korabytes landing page in dark mode with the alpha cohort ticket showing 100 spots",
+    },
+    gallery: [],
+    demo: {
+      capId: "dtzjpvcg3q8jw9d",
+      title: "Korabytes site walkthrough",
+    },
+    spotlights: [
+      {
+        title: "A clean, modern UI on a short deadline",
+        paragraphs: [
+          "The community needed to be live and recruiting within a short window, and the site had to feel like it belonged next to Kora. I didn't want speed to show in the result.",
+          "I started with a small design system instead of one-off styles: brand colours as tokens, a type scale across three fonts, one easing curve and one entrance style for every animation. That made the rest of the build fast, because every new section reused the same pieces.",
+          "Dark mode keeps the brand rather than inverting it, with a navy night sky and Kora blue as the light source. The theme applies before first paint, so there's no flash, and motion and smooth scrolling switch off for anyone who prefers reduced motion.",
+        ],
+        screens: [
+          {
+            src: "/images/korabytes-hero-dark.png",
+            alt: "Korabytes hero in dark mode with a navy background and blue glow",
+            caption: "The hero in dark mode, with the alpha cohort ticket.",
+            width: 2000,
+            height: 1301,
+          },
+          {
+            src: "/images/korabytes-hero-light.png",
+            alt: "Korabytes hero in light mode",
+            caption: "The same hero in light mode.",
+            width: 2000,
+            height: 1301,
+          },
+        ],
+      },
+      {
+        title: "A CMS, webhooks and Tally, coordinated so nobody waits on a developer",
+        paragraphs: [
+          "Events and announcements change every week and are written by the exec team, not engineers. I integrated Sanity as the CMS and embedded its Studio in the site at /studio, so editors publish from the same domain and nothing else needs hosting. Everything else stays in code, so an editing mistake can't break the layout.",
+          "Pages are static and cached, and a signed Sanity webhook keeps them fresh. When a post is published, Sanity calls an API route that verifies the signature and clears the cached posts, so the change is live straight away. If a webhook ever fails, an hourly refresh catches up, and it also moves finished events into Past.",
+          "Applications go through an embedded Tally form. The exec team already reviews submissions in Tally, so the site stores no personal data and needs no spam handling. If Tally's script fails, the form still loads, and there's a link to open it in a new tab.",
+        ],
+        screens: [
+          {
+            src: "/images/korabytes-events.png",
+            alt: "Korabytes events and announcements page with filters and two posts",
+            caption: "Events and announcements, published by the exec team from Sanity.",
+            width: 2000,
+            height: 1301,
+          },
+          {
+            src: "/images/korabytes-event.png",
+            alt: "A Korabytes event page with a cover image, date, venue and price",
+            caption: "An event page, with registration and an add-to-calendar download.",
+            width: 2000,
+            height: 1301,
+          },
+        ],
+      },
+    ],
+  },
+  {
     slug: "analytica",
     title: "Analytica",
     tagline: "An AI-powered learning platform for aspiring data analysts",
