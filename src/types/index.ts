@@ -31,6 +31,7 @@ export interface ProjectLinks {
   live?: string;
   github?: string;
   linkedin?: string;
+  instagram?: string;
 }
 
 export interface Project {

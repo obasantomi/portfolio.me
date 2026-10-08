@@ -8,8 +8,8 @@ import { ButtonLink, Container, StackList, cx } from "@/components/ui/primitives
 import type { Project, Screen, Spotlight } from "@/types";
 
 function ProjectLinks({ project }: { project: Project }) {
-  const { live, github, linkedin } = project.links;
-  if (!live && !github && !linkedin) return null;
+  const { live, github, linkedin, instagram } = project.links;
+  if (!live && !github && !linkedin && !instagram) return null;
 
   return (
     <div className="flex flex-wrap gap-3">
@@ -25,7 +25,12 @@ function ProjectLinks({ project }: { project: Project }) {
       ) : null}
       {linkedin ? (
         <ButtonLink href={linkedin} variant="ghost" external>
-          LinkedIn post
+          LinkedIn
+        </ButtonLink>
+      ) : null}
+      {instagram ? (
+        <ButtonLink href={instagram} variant="ghost" external>
+          Instagram
         </ButtonLink>
       ) : null}
     </div>
