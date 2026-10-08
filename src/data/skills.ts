@@ -23,7 +23,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     name: "Infrastructure",
-    skills: ["Microservices", "Docker", "Kubernetes", "CI/CD pipelines", "Vercel", "Render"],
+    skills: ["Microservices", "Docker", "Kubernetes", "CI/CD pipelines", "Vercel", "Render", "AWS"],
   },
   {
     name: "Tools",
