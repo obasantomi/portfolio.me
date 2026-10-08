@@ -19,7 +19,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     name: "AI",
-    skills: ["OpenAI API", "Google GenAI API (Gemini)", "Prompt and context design", "Retry and fallback strategies"],
+    skills: ["OpenAI API", "Google GenAI API (Gemini)", "MCP integrations", "Prompt and context design", "Retry and fallback strategies"],
   },
   {
     name: "Infrastructure",
