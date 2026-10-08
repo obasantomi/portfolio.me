@@ -22,7 +22,11 @@ export const skillGroups: SkillGroup[] = [
     skills: ["OpenAI API", "Google GenAI (Gemini)", "Prompt and context design", "Retry and fallback strategies"],
   },
   {
+    name: "Infrastructure",
+    skills: ["Microservices", "Docker", "Kubernetes", "CI/CD", "Vercel", "Render"],
+  },
+  {
     name: "Tools",
-    skills: ["Git and GitHub", "Figma", "Vercel", "Render"],
+    skills: ["Git and GitHub", "Figma", "Sanity", "Tally"],
   },
 ];

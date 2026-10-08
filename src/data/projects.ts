@@ -12,8 +12,8 @@ export const projects: Project[] = [
     year: "2026",
     featured: true,
     overview: [
-      "Tramango is a Nigerian travel platform where people book flights, buy travel insurance, find events and buy tickets, and book travel packages. It runs as a set of Node.js services behind an API gateway, with a Next.js web app in front.",
-      "I joined in September 2026 and work across the stack, mostly on events and insurance. I take each feature from the product brief and Figma to pull requests on both the backend and the web app, with tests, and ship it through code review to production.",
+      "Tramango is a Nigerian travel platform where people book flights, buy travel insurance, find events and buy tickets, and book travel packages. It runs on a microservices architecture: Node.js services behind an API gateway, with a Next.js web app in front.",
+      "I joined in September 2026 and work across the stack, mostly on events and insurance. I take each feature from the product brief and Figma to pull requests on both the backend and the web app, with tests, and ship it through code review to production. Working across services also means working on how they ship: CI/CD workflows, Docker images and deployment configuration on Kubernetes.",
     ],
     highlights: [
       "An events guest list, live in production. Creators invite free guests one by one or through shareable registration links with a sign-up limit.",
@@ -24,7 +24,7 @@ export const projects: Project[] = [
       "Scheduled event publishing that goes live on time, with a backup check every seven minutes for missed schedules.",
       "Event image uploads that compress to under 1 MB, crop in the browser and reject unsupported formats with a clear message.",
     ],
-    stack: ["Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Paystack", "Allianz API"],
+    stack: ["Next.js", "TypeScript", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes", "Paystack", "Allianz API"],
     links: {
       live: "https://tramango.com",
     },

@@ -9,15 +9,16 @@ export const experience: Role[] = [
     location: "Lagos",
     current: true,
     description:
-      "A Nigerian travel platform for flights, travel insurance, events and ticketing, and travel packages.",
+      "A Nigerian travel platform for flights, travel insurance, events and ticketing, and travel packages, built as Node.js microservices.",
     highlights: [
       "Built the events Guest List feature end to end, now live in production. Creators invite free guests one by one or through shareable registration links, and sign-up limits hold even when many people register at once. Guests reuse the existing QR check-in flow and stay out of revenue figures.",
       "Fixed the travel insurance flow so customers could get quotes again, and rebuilt its booking forms to the Figma design with per-field validation and consistent layout.",
       "Built verified partner payouts with Paystack: a searchable list of every Nigerian bank, and account names resolved on the server before anything is saved, with clear errors for partners.",
       "Built a CSV export of event purchases for the finance team, covering every order with payment type, add-ons, fees and check-in status, restricted to super admins.",
       "Made scheduled event publishing run on time, with a backup check that catches missed schedules, and added automatic compression, cropping and validation for event image uploads.",
+      "Work on how our services ship and stay up: CI/CD workflows, Docker images, Kubernetes deployment configuration, and tuning nodes, pods and rollouts so the platform stays reliable around the clock.",
     ],
-    stack: ["Next.js", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Paystack"],
+    stack: ["Next.js", "Node.js", "Express", "PostgreSQL", "MongoDB", "Redis", "Docker", "Kubernetes", "Paystack"],
     caseStudySlug: "tramango",
   },
   {

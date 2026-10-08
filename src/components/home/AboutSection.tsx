@@ -44,6 +44,11 @@ export function AboutSection() {
                 Node.js and NestJS.
               </p>
               <p>
+                At Tramango I work on a microservices architecture, and I care about what happens after the merge:
+                CI/CD workflows, Docker, Kubernetes deployment configuration, and tuning nodes and pods so the product
+                stays reliable all day long.
+              </p>
+              <p>
                 I use AI as leverage, not a crutch. I make the decisions and I understand the code I ship. I&apos;m{" "}
                 <span className="text-fg">available now</span> and looking for an ambitious team that cares about
                 building things properly.
