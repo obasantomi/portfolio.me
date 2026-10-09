@@ -274,4 +274,13 @@ dialog.video-dialog[open]::backdrop {
   .availability-signal::before {
     animation: none !important;
   }
+
+  /* Framer sets these inline, so only !important can show the image as it is. */
+  .media-reveal {
+    clip-path: none !important;
+  }
+
+  .media-settle {
+    transform: none !important;
+  }
 }

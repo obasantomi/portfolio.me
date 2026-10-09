@@ -21,6 +21,7 @@ function FeaturedProject({ project, reversed }: { project: Project; reversed: bo
         <RevealImage
           image={project.cover}
           sizes="(min-width: 1024px) 640px, 100vw"
+          reveal
           className="shadow-card transition-transform duration-500 ease-out group-hover:-translate-y-1"
         />
       </Link>

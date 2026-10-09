@@ -28,18 +28,23 @@ export const heroItem: Variants = {
   },
 };
 
-/** Wipes media in from the bottom edge as it scrolls into view. */
+/**
+ * Media opens from fully hidden, rising from its bottom edge like the page
+ * curtain lifting, so the reveal reads clearly as it scrolls into view.
+ */
 export const mediaReveal: Variants = {
-  hidden: { clipPath: "inset(14% 0% 0% 0% round 16px)" },
+  hidden: { clipPath: "inset(100% 0% 0% 0% round 16px)" },
   visible: {
     clipPath: "inset(0% 0% 0% 0% round 16px)",
-    transition: { duration: 0.9, ease: EASE_EMPHASIS },
+    transition: { duration: 1.3, ease: EASE_CURTAIN },
   },
 };
 
+/**
+ * The picture eases back from a close crop on the wipe's own curve, running a
+ * little longer so the zoom is still visible after the frame has opened.
+ */
 export const mediaSettle: Variants = {
-  hidden: { scale: 1.08 },
-  visible: { scale: 1, transition: { duration: 1.2, ease: EASE_EMPHASIS } },
+  hidden: { scale: 1.25 },
+  visible: { scale: 1, transition: { duration: 1.9, ease: EASE_CURTAIN } },
 };
-
-export const inViewOnce = { once: true, amount: 0.25 } as const;
