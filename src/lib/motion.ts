@@ -6,6 +6,8 @@ import type { Transition, Variants } from "framer-motion";
  */
 export const EASE_OUT = [0.2, 0, 0, 1] as const;
 export const EASE_EMPHASIS = [0.05, 0.7, 0.1, 1] as const;
+/** For surfaces that travel the full viewport: eases in and out, so it never snaps at either edge. */
+export const EASE_CURTAIN = [0.65, 0, 0.35, 1] as const;
 
 export const SPRING_MICRO: Transition = { type: "spring", stiffness: 420, damping: 32 };
 export const SPRING_ENTRANCE: Transition = { type: "spring", stiffness: 180, damping: 26 };

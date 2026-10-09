@@ -5,6 +5,7 @@ import type { LenisOptions } from "lenis";
 import { ReactLenis } from "lenis/react";
 import { ThemeProvider } from "next-themes";
 import { AudioProvider } from "./AudioProvider";
+import { PageTransition } from "./PageTransition";
 import { ScrollFeel } from "./ScrollFeel";
 
 const smoothScrollOptions: LenisOptions = {
@@ -22,7 +23,9 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <AudioProvider>
         <ReactLenis root options={smoothScrollOptions}>
           <ScrollFeel />
-          <MotionConfig reducedMotion="user">{children}</MotionConfig>
+          <MotionConfig reducedMotion="user">
+            <PageTransition>{children}</PageTransition>
+          </MotionConfig>
         </ReactLenis>
       </AudioProvider>
     </ThemeProvider>

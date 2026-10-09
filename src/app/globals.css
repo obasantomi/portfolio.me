@@ -108,6 +108,33 @@ body {
 }
 
 /*
+ * Curtain sheet, shared by page transitions and the menu: the theme's ink as
+ * a solid surface. Content on it takes the opposite theme's palette, so the
+ * accent and muted text keep their contrast against the sheet.
+ */
+.page-curtain {
+  background: var(--fg);
+}
+
+.on-curtain {
+  --fg: var(--bg);
+  --muted: #9c9a94;
+  --line: rgb(247 247 245 / 0.16);
+  --accent: #f5b53d;
+}
+
+.dark .on-curtain {
+  --muted: #5c5a55;
+  --line: rgb(10 10 9 / 0.14);
+  --accent: #8f5600;
+}
+
+/* The transition mark's ring is drawn live, so it gets a firmer stroke. */
+.on-curtain.page-curtain-mark {
+  --line: color-mix(in srgb, var(--fg) 34%, transparent);
+}
+
+/*
  * Availability signal in the hero: an accent arc travels around the capsule's
  * hairline border without stopping, echoing the monogram's arc. The border
  * ring is masked out of a rotating conic gradient. Reduced motion stops the arc.
