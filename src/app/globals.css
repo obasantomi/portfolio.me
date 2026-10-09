@@ -135,6 +135,53 @@ body {
 }
 
 /*
+ * Menu items roll letter by letter on hover, each letter a beat behind the
+ * last, while the other items step back. Hover-capable pointers only, so a
+ * tap never leaves a half-rolled word behind.
+ */
+/* The mask breathes past the tight line box so round letters keep their overshoot. */
+.menu-roll-char {
+  --roll-bleed: 0.1em;
+  --roll-gap: 0.3em;
+  display: inline-block;
+  overflow: hidden;
+  height: calc(1lh + 2 * var(--roll-bleed));
+  margin-block: calc(-1 * var(--roll-bleed));
+  padding-block: var(--roll-bleed);
+  vertical-align: top;
+}
+
+.menu-roll-track {
+  display: flex;
+  flex-direction: column;
+  gap: var(--roll-gap);
+  transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: calc(var(--i) * 18ms);
+}
+
+.menu-link {
+  transition: opacity 0.45s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (hover: hover) {
+  .menu-link:hover .menu-roll-track {
+    transform: translateY(calc(-1lh - var(--roll-gap)));
+  }
+
+  .menu-list:has(.menu-link:hover) .menu-link:not(:hover) {
+    opacity: 0.28;
+  }
+}
+
+.menu-link:focus-visible .menu-roll-track {
+  transform: translateY(calc(-1lh - var(--roll-gap)));
+}
+
+.menu-list:has(.menu-link:focus-visible) .menu-link:not(:focus-visible) {
+  opacity: 0.28;
+}
+
+/*
  * Availability signal in the hero: an accent arc travels around the capsule's
  * hairline border without stopping, echoing the monogram's arc. The border
  * ring is masked out of a rotating conic gradient. Reduced motion stops the arc.
