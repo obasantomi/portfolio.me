@@ -101,22 +101,15 @@ body {
   text-wrap: pretty;
 }
 
-/* The monogram's accent arc orbits slowly; reduced motion stops it below. */
+/* The monogram's accent arc. It always rests; only the availability signal orbits forever. */
 .monogram-orbit {
   background: conic-gradient(from 0deg, transparent 0deg 250deg, var(--accent) 330deg, transparent 360deg);
   mask: radial-gradient(farthest-side, transparent calc(100% - 1.5px), #000 calc(100% - 1px));
-  animation: monogram-spin 6s linear infinite;
-}
-
-@keyframes monogram-spin {
-  to {
-    transform: rotate(1turn);
-  }
 }
 
 /*
  * Availability signal in the hero: an accent arc travels around the capsule's
- * hairline border without stopping, echoing the monogram's orbit. The border
+ * hairline border without stopping, echoing the monogram's arc. The border
  * ring is masked out of a rotating conic gradient. Reduced motion stops the arc.
  */
 @property --signal-angle {

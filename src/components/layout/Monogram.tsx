@@ -1,6 +1,6 @@
 import { cx } from "@/components/ui/primitives";
 
-/** "TO" initials inside a ring with an accent arc that orbits slowly. */
+/** "TO" initials inside a ring with a resting accent arc. */
 export function Monogram({ className }: { className?: string }) {
   return (
     <span aria-hidden className={cx("relative grid size-10 place-items-center", className)}>
