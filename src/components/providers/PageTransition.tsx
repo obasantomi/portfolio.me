@@ -4,6 +4,7 @@ import { useAnimate, useReducedMotion } from "framer-motion";
 import { useLenis } from "lenis/react";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { INTRO_CLASS } from "@/lib/intro";
 import { EASE_CURTAIN, EASE_EMPHASIS, EASE_OUT } from "@/lib/motion";
 
 type Phase = "idle" | "covering" | "covered" | "revealing";
@@ -51,7 +52,7 @@ function transitionTargetFor(event: MouseEvent): URL | null {
 }
 
 /**
- * Page-to-page curtain. A solid sheet slides down over the viewport, the
+ * Page-to-page curtain, also played once as the site's entrance. A solid sheet slides down over the viewport, the
  * monogram settles in its centre, the next route commits behind it, and the
  * sheet carries on downward to reveal the new page.
  *
@@ -78,13 +79,16 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
     pendingCommit.current = null;
   }, [pathname]);
 
-  const run = useCallback(
-    async (url: URL) => {
+  /**
+   * The shared sequence: cover, draw the mark, reveal. `whileCovered` is the
+   * work done behind the sheet, such as loading the next route; the sheet
+   * only lifts once both it and the mark are finished.
+   */
+  const play = useCallback(
+    async (whileCovered: () => Promise<void> | void, { startCovered = false } = {}) => {
       isRunning.current = true;
-      const href = url.pathname + url.search + url.hash;
-      router.prefetch(href);
       lenis?.stop();
-      setPhase("covering");
+      setPhase(startCovered ? "covered" : "covering");
 
       const sheet = scope.current;
       const mark = sheet.querySelector<HTMLElement>("[data-curtain-mark]")!;
@@ -98,16 +102,15 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       animate(letters, { opacity: 0, y: 6, filter: "blur(4px)" }, { duration: 0 });
       animate(orbit, { opacity: 0, rotate: -120 }, { duration: 0 });
 
-      // 1. A blank sheet slides down and covers the viewport.
-      await animate(sheet, { y: ["-100%", "0%"] }, { duration: TIMING.coverIn, ease: EASE_CURTAIN, delay: TIMING.coverDelay });
-      setPhase("covered");
-
-      // The next route loads behind the sheet while the mark draws.
-      const committed = new Promise<void>((resolve) => {
-        pendingCommit.current = { pathname: url.pathname, resolve };
-      });
-      const fallback = window.setTimeout(() => window.location.assign(href), NAVIGATION_TIMEOUT_MS);
-      router.push(href);
+      // 1. A blank sheet slides down and covers the viewport. The entrance
+      //    skips this: the sheet is already in place from the first paint.
+      if (startCovered) {
+        animate(sheet, { y: "0%" }, { duration: 0 });
+      } else {
+        await animate(sheet, { y: ["-100%", "0%"] }, { duration: TIMING.coverIn, ease: EASE_CURTAIN, delay: TIMING.coverDelay });
+        setPhase("covered");
+      }
+      const work = whileCovered();
 
       // 2. Once covered, the ring traces a full turn from twelve o'clock, the
       //    initials surface as it closes, and the accent arc sweeps once into place.
@@ -125,9 +128,8 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       // A single sweep that comes to rest, never a loop.
       animate(orbit, { opacity: [0, 1], rotate: [-120, 0] }, { duration: TIMING.orbit, ease: EASE_EMPHASIS });
 
-      await Promise.all([committed, sleep(TIMING.hold * 1000)]);
-      window.clearTimeout(fallback);
-      // Let the new page paint once before anything moves off it.
+      await Promise.all([work, sleep(TIMING.hold * 1000)]);
+      // Let the page underneath paint once before anything moves off it.
       await nextFrame();
 
       // 3. The mark dissolves in place, then the sheet carries on downward.
@@ -141,8 +143,46 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       setPhase("idle");
       isRunning.current = false;
     },
-    [animate, lenis, router, scope],
+    [animate, lenis, scope],
   );
+
+  const navigate = useCallback(
+    (url: URL) => {
+      const href = url.pathname + url.search + url.hash;
+      router.prefetch(href);
+
+      return play(async () => {
+        const committed = new Promise<void>((resolve) => {
+          pendingCommit.current = { pathname: url.pathname, resolve };
+        });
+        const fallback = window.setTimeout(() => window.location.assign(href), NAVIGATION_TIMEOUT_MS);
+        router.push(href);
+        await committed;
+        window.clearTimeout(fallback);
+      });
+    },
+    [play, router],
+  );
+
+  // Entrance: the inline script in the root layout marks a first visit before
+  // the first paint, and CSS holds the sheet over the screen until now. The
+  // sequence starts at the mark, then the sheet exits to reveal the page.
+  // Waits for Lenis so scrolling is frozen throughout.
+  useEffect(() => {
+    const root = document.documentElement;
+    if (!lenis || isRunning.current || !root.classList.contains(INTRO_CLASS)) return;
+    const frame = requestAnimationFrame(() => {
+      void play(
+        async () => {
+          // Hand the sheet from CSS to Framer only once React has committed it as covering.
+          await nextFrame();
+          root.classList.remove(INTRO_CLASS);
+        },
+        { startCovered: true },
+      );
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [lenis, play]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -151,12 +191,12 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
       const url = transitionTargetFor(event);
       if (!url) return;
       event.preventDefault();
-      if (!isRunning.current) void run(url);
+      if (!isRunning.current) void navigate(url);
     };
 
     window.addEventListener("click", handleClick, { capture: true });
     return () => window.removeEventListener("click", handleClick, { capture: true });
-  }, [reduceMotion, run]);
+  }, [reduceMotion, navigate]);
 
   return (
     <PageTransitionContext.Provider value={{ isCovered: phase === "covered" }}>

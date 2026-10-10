@@ -9,6 +9,7 @@ import { Providers } from "@/components/providers/Providers";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { profile } from "@/data/profile";
+import { introScript } from "@/lib/intro";
 import { siteDescription, siteKeywords, siteTitle, siteUrl } from "@/lib/site";
 
 // Bricolage Grotesque has optical sizes, so headlines tighten up at large
@@ -75,6 +76,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       className={`${display.variable} ${sans.variable} ${mono.variable} antialiased`}
     >
       <body className="min-h-screen overflow-x-hidden bg-bg text-fg">
+        {/* Before anything paints: decides whether this load plays the entrance curtain. */}
+        <script dangerouslySetInnerHTML={{ __html: introScript }} />
         <Providers>
           <a
             href="#main"

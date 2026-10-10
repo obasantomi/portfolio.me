@@ -129,6 +129,19 @@ body {
   --accent: #8f5600;
 }
 
+/*
+ * Entrance: from the first paint the sheet already covers the screen and the
+ * page waits behind it, until the entrance hands the sheet over to Framer.
+ */
+html.intro .page-curtain {
+  visibility: visible !important;
+  transform: none !important;
+}
+
+html.intro body > :not(.page-curtain) {
+  visibility: hidden;
+}
+
 /* The transition mark's ring is drawn live, so it gets a firmer stroke. */
 .on-curtain.page-curtain-mark {
   --line: color-mix(in srgb, var(--fg) 34%, transparent);
