@@ -5,24 +5,29 @@ import { useLenis } from "lenis/react";
 import { usePathname, useRouter } from "next/navigation";
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { INTRO_CLASS } from "@/lib/intro";
-import { EASE_CURTAIN, EASE_EMPHASIS, EASE_OUT } from "@/lib/motion";
+import { EASE_CURTAIN, EASE_EMPHASIS, EASE_OUT, PAGE_EXIT } from "@/lib/motion";
 
-type Phase = "idle" | "covering" | "covered" | "revealing";
+/** Where the entrance curtain is; it only ever plays on a first load. */
+type CurtainPhase = "idle" | "covered" | "revealing";
 
-const PageTransitionContext = createContext<{ isCovered: boolean }>({ isCovered: false });
+type PageTransitionState = {
+  curtain: CurtainPhase;
+  /** The pathname currently stepping away during a page change, if any. */
+  leavingFrom: string | null;
+};
+
+const PageTransitionContext = createContext<PageTransitionState>({ curtain: "idle", leavingFrom: null });
 
 export const usePageTransition = () => useContext(PageTransitionContext);
 
-/** Only movement between home, the work index, and case studies gets the curtain. */
+/** Only movement between home, the work index, and case studies is taken over. */
 const isTransitionRoute = (path: string) => path === "/" || path === "/work" || path.startsWith("/work/");
 
 // If a navigation never commits (offline, server error), fall back to a full load.
 const NAVIGATION_TIMEOUT_MS = 10_000;
 
-/** Seconds. Tuned to feel unhurried: the sheet is meant to be watched, not glimpsed. */
-const TIMING = {
-  coverDelay: 0.12,
-  coverIn: 1.1,
+/** Seconds. Tuned to feel unhurried: the entrance is meant to be watched, not glimpsed. */
+const ENTRANCE = {
   markDelay: 0.12,
   ringDraw: 1.05,
   letters: 0.7,
@@ -52,14 +57,17 @@ function transitionTargetFor(event: MouseEvent): URL | null {
 }
 
 /**
- * Page-to-page curtain, also played once as the site's entrance. A solid sheet slides down over the viewport, the
- * monogram settles in its centre, the next route commits behind it, and the
- * sheet carries on downward to reveal the new page.
+ * Two kinds of motion between pages, sized to how often each is seen.
  *
- * Links are taken over in the capture phase, so every next/link in the app
- * gets the curtain without opting in: next/link skips its own navigation when
- * the click is already default-prevented. Back/forward is left to the browser
- * and gets the template's soft entrance instead, so history stays instant.
+ * Entrance, once per session: a solid sheet already covers the screen at the
+ * first paint, the monogram draws itself, and the sheet exits downward to
+ * reveal the page.
+ *
+ * Page changes, every time: the current page lifts away in under a third of a
+ * second, the next route commits, and it fades up into place. No sheet, no
+ * logo, so moving around the site never keeps anyone waiting. Links are taken
+ * over in the capture phase; next/link stands down when a click is already
+ * default-prevented. Back/forward gets the template's entrance on its own.
  */
 export function PageTransition({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -67,122 +75,100 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   const lenis = useLenis();
   const reduceMotion = useReducedMotion();
   const [scope, animate] = useAnimate<HTMLDivElement>();
-  const [phase, setPhase] = useState<Phase>("idle");
+  const [curtain, setCurtain] = useState<CurtainPhase>("idle");
+  const [leavingFrom, setLeavingFrom] = useState<string | null>(null);
 
   const isRunning = useRef(false);
   const pendingCommit = useRef<{ pathname: string; resolve: () => void } | null>(null);
 
-  // Resolves once the target route has rendered behind the curtain.
+  // Resolves once the target route has rendered.
   useEffect(() => {
     if (pendingCommit.current?.pathname !== pathname) return;
     pendingCommit.current.resolve();
     pendingCommit.current = null;
   }, [pathname]);
 
-  /**
-   * The shared sequence: cover, draw the mark, reveal. `whileCovered` is the
-   * work done behind the sheet, such as loading the next route; the sheet
-   * only lifts once both it and the mark are finished.
-   */
-  const play = useCallback(
-    async (whileCovered: () => Promise<void> | void, { startCovered = false } = {}) => {
-      isRunning.current = true;
-      lenis?.stop();
-      setPhase(startCovered ? "covered" : "covering");
-
-      const sheet = scope.current;
-      const mark = sheet.querySelector<HTMLElement>("[data-curtain-mark]")!;
-      const ring = mark.querySelector<SVGCircleElement>("[data-ring]")!;
-      const letters = mark.querySelector<HTMLElement>("[data-letters]")!;
-      const orbit = mark.querySelector<HTMLElement>("[data-orbit]")!;
-
-      // Reset the mark so every run starts from a blank sheet.
-      animate(mark, { opacity: 1 }, { duration: 0 });
-      animate(ring, { strokeDashoffset: 1 }, { duration: 0 });
-      animate(letters, { opacity: 0, y: 6, filter: "blur(4px)" }, { duration: 0 });
-      animate(orbit, { opacity: 0, rotate: -120 }, { duration: 0 });
-
-      // 1. A blank sheet slides down and covers the viewport. The entrance
-      //    skips this: the sheet is already in place from the first paint.
-      if (startCovered) {
-        animate(sheet, { y: "0%" }, { duration: 0 });
-      } else {
-        await animate(sheet, { y: ["-100%", "0%"] }, { duration: TIMING.coverIn, ease: EASE_CURTAIN, delay: TIMING.coverDelay });
-        setPhase("covered");
-      }
-      const work = whileCovered();
-
-      // 2. Once covered, the ring traces a full turn from twelve o'clock, the
-      //    initials surface as it closes, and the accent arc sweeps once into place.
-      const ringDrawn = animate(
-        ring,
-        { strokeDashoffset: [1, 0] },
-        { duration: TIMING.ringDraw, ease: EASE_CURTAIN, delay: TIMING.markDelay },
-      );
-      const lettersIn = animate(
-        letters,
-        { opacity: [0, 1], y: [6, 0], filter: ["blur(4px)", "blur(0px)"] },
-        { duration: TIMING.letters, ease: EASE_EMPHASIS, delay: TIMING.markDelay + TIMING.ringDraw * 0.45 },
-      );
-      await Promise.all([ringDrawn, lettersIn]);
-      // A single sweep that comes to rest, never a loop.
-      animate(orbit, { opacity: [0, 1], rotate: [-120, 0] }, { duration: TIMING.orbit, ease: EASE_EMPHASIS });
-
-      await Promise.all([work, sleep(TIMING.hold * 1000)]);
-      // Let the page underneath paint once before anything moves off it.
-      await nextFrame();
-
-      // 3. The mark dissolves in place, then the sheet carries on downward.
-      setPhase("revealing");
-      animate(mark, { opacity: 0, filter: ["blur(0px)", "blur(4px)"] }, { duration: TIMING.markOut, ease: EASE_OUT });
-      await animate(sheet, { y: "100%" }, { duration: TIMING.coverOut, ease: EASE_CURTAIN, delay: TIMING.markOut * 0.6 });
-
-      animate(sheet, { y: "-100%" }, { duration: 0 });
-      animate(mark, { filter: "blur(0px)" }, { duration: 0 });
-      lenis?.start();
-      setPhase("idle");
-      isRunning.current = false;
-    },
-    [animate, lenis, scope],
-  );
-
   const navigate = useCallback(
-    (url: URL) => {
+    async (url: URL) => {
+      isRunning.current = true;
       const href = url.pathname + url.search + url.hash;
       router.prefetch(href);
+      lenis?.stop();
 
-      return play(async () => {
-        const committed = new Promise<void>((resolve) => {
-          pendingCommit.current = { pathname: url.pathname, resolve };
-        });
-        const fallback = window.setTimeout(() => window.location.assign(href), NAVIGATION_TIMEOUT_MS);
-        router.push(href);
-        await committed;
-        window.clearTimeout(fallback);
+      // 1. The current page steps away.
+      setLeavingFrom(window.location.pathname);
+      await sleep(PAGE_EXIT * 1000);
+
+      // 2. The next route commits while nothing is on screen to jump.
+      const committed = new Promise<void>((resolve) => {
+        pendingCommit.current = { pathname: url.pathname, resolve };
       });
+      const fallback = window.setTimeout(() => window.location.assign(href), NAVIGATION_TIMEOUT_MS);
+      router.push(href);
+      await committed;
+      window.clearTimeout(fallback);
+
+      // 3. The template fades the new page up; scrolling comes back with it.
+      setLeavingFrom(null);
+      lenis?.start();
+      isRunning.current = false;
     },
-    [play, router],
+    [lenis, router],
   );
 
-  // Entrance: the inline script in the root layout marks a first visit before
-  // the first paint, and CSS holds the sheet over the screen until now. The
-  // sequence starts at the mark, then the sheet exits to reveal the page.
-  // Waits for Lenis so scrolling is frozen throughout.
-  useEffect(() => {
+  const playEntrance = useCallback(async () => {
+    isRunning.current = true;
+    lenis?.stop();
+    setCurtain("covered");
+
     const root = document.documentElement;
-    if (!lenis || isRunning.current || !root.classList.contains(INTRO_CLASS)) return;
-    const frame = requestAnimationFrame(() => {
-      void play(
-        async () => {
-          // Hand the sheet from CSS to Framer only once React has committed it as covering.
-          await nextFrame();
-          root.classList.remove(INTRO_CLASS);
-        },
-        { startCovered: true },
-      );
-    });
+    const sheet = scope.current;
+    const mark = sheet.querySelector<HTMLElement>("[data-curtain-mark]")!;
+    const ring = mark.querySelector<SVGCircleElement>("[data-ring]")!;
+    const letters = mark.querySelector<HTMLElement>("[data-letters]")!;
+    const orbit = mark.querySelector<HTMLElement>("[data-orbit]")!;
+
+    // Take the sheet over from the CSS that has held it in place since the
+    // first paint, once React has committed it as covering.
+    animate(sheet, { y: "0%" }, { duration: 0 });
+    animate(orbit, { opacity: 0, rotate: -120 }, { duration: 0 });
+    await nextFrame();
+    root.classList.remove(INTRO_CLASS);
+
+    // 1. The ring traces a full turn from twelve o'clock, the initials surface
+    //    as it closes, and the accent arc sweeps once into place.
+    const ringDrawn = animate(
+      ring,
+      { strokeDashoffset: [1, 0] },
+      { duration: ENTRANCE.ringDraw, ease: EASE_CURTAIN, delay: ENTRANCE.markDelay },
+    );
+    const lettersIn = animate(
+      letters,
+      { opacity: [0, 1], y: [6, 0], filter: ["blur(4px)", "blur(0px)"] },
+      { duration: ENTRANCE.letters, ease: EASE_EMPHASIS, delay: ENTRANCE.markDelay + ENTRANCE.ringDraw * 0.45 },
+    );
+    await Promise.all([ringDrawn, lettersIn]);
+    // A single sweep that comes to rest, never a loop.
+    animate(orbit, { opacity: [0, 1], rotate: [-120, 0] }, { duration: ENTRANCE.orbit, ease: EASE_EMPHASIS });
+    await sleep(ENTRANCE.hold * 1000);
+
+    // 2. The mark dissolves in place, then the sheet exits downward.
+    setCurtain("revealing");
+    animate(mark, { opacity: 0, filter: ["blur(0px)", "blur(4px)"] }, { duration: ENTRANCE.markOut, ease: EASE_OUT });
+    await animate(sheet, { y: "100%" }, { duration: ENTRANCE.coverOut, ease: EASE_CURTAIN, delay: ENTRANCE.markOut * 0.6 });
+
+    lenis?.start();
+    setCurtain("idle");
+    isRunning.current = false;
+  }, [animate, lenis, scope]);
+
+  // The inline script in the root layout marks a first visit before the first
+  // paint. Waits for Lenis so scrolling is frozen throughout.
+  useEffect(() => {
+    if (!lenis || isRunning.current || !document.documentElement.classList.contains(INTRO_CLASS)) return;
+    const frame = requestAnimationFrame(() => void playEntrance());
     return () => cancelAnimationFrame(frame);
-  }, [lenis, play]);
+  }, [lenis, playEntrance]);
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -199,17 +185,17 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   }, [reduceMotion, navigate]);
 
   return (
-    <PageTransitionContext.Provider value={{ isCovered: phase === "covered" }}>
+    <PageTransitionContext.Provider value={{ curtain, leavingFrom }}>
       {children}
       <div
         ref={scope}
         aria-hidden
         className="page-curtain fixed inset-0 z-90 grid place-items-center"
         style={{
-          // Parked above the viewport; Framer owns transform from the first run onward.
+          // Parked above the viewport; the entrance CSS and then Framer own it while it plays.
           transform: "translateY(-100%)",
-          pointerEvents: phase === "idle" ? "none" : "auto",
-          visibility: phase === "idle" ? "hidden" : "visible",
+          pointerEvents: curtain === "idle" ? "none" : "auto",
+          visibility: curtain === "idle" ? "hidden" : "visible",
         }}
       >
         <div data-curtain-mark className="on-curtain page-curtain-mark relative grid size-[4.5rem] place-items-center">
