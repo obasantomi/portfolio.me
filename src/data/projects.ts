@@ -17,6 +17,7 @@ export const projects: Project[] = [
     ],
     highlights: [
       "An events guest list, live in production. Creators invite free guests one by one or through shareable registration links with a sign-up limit.",
+      "Role-based partner teams: event partners invite people by email as read-only Members or Admins who can edit the partner's existing events, with roles enforced on the server on every request.",
       "Allianz travel insurance quotes that match every destination to the plan Allianz actually sells there.",
       "A full-page insurance booking flow with saved drafts, per-field validation and a confirmation page that follows policy issuance.",
       "Verified partner payouts with Paystack: a searchable list of Nigerian banks, with account names resolved on the server before anything is saved.",
@@ -46,6 +47,15 @@ export const projects: Project[] = [
           "I added guests and registration links as new tables without altering any existing one. Each guest gets a zero-value purchase record that runs through the existing ticket issuance, QR and check-in pipeline unchanged, the same approach the platform already used for walk-in sales. Attendee, revenue and sales queries leave guests out.",
           "Creators add guests one by one or share a registration link with a sign-up limit. A row lock in PostgreSQL enforces that limit, so it holds even when many people register at the same moment. Guests get their own RSVP email, and removing a guest revokes their ticket immediately.",
           "The tests run against real PostgreSQL and Redis and include a check that ticket inventory, sales, revenue and payouts are identical before and after guests exist. On the web app I added a Guests tab for creators, a public registration page, and a fix for an Attendees tab that had always been empty.",
+        ],
+      },
+      {
+        title: "Partner teams with role-based access",
+        paragraphs: [
+          "Event partners were sharing one login so their staff could check sales and manage events. I built partner teams so each person gets their own account and only the access they need.",
+          "A partner invites someone by email as a Member or an Admin. Members can view every event the partner owns, including analytics, transactions and issued tickets, but can't change anything. Admins can also edit the partner's existing events. Only the partner manages the team, and they can promote, demote, resend or remove members at any time.",
+          "Access is checked on the server on every request, so a role change takes effect on the person's next click. The events service resolves each request to owner, team admin or member and answers a Member's write with a clear read-only error. I kept the team admin role separate from Tramango's own platform admin so the two can never be confused, and every role change is written to an audit log.",
+          "The invitation flow works whether or not the invitee already has a Tramango account: they accept while signed in, sign in and come back, or create an account on the spot through the auth service, with Google sign-in returning them to the invitation too. On the web app I added a Team tab, a page listing the partners you belong to, and a read-only mode where edit actions explain why they're unavailable. The work spans the auth service, the API gateway, the events service and the partner dashboard, with tests for each role.",
         ],
       },
       {

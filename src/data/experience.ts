@@ -12,6 +12,7 @@ export const experience: Role[] = [
       "A Nigerian travel platform for flights, travel insurance, events and ticketing, and travel packages, built as Node.js microservices.",
     highlights: [
       "Built the events Guest List feature end to end, now live in production. Creators invite free guests one by one or through shareable registration links, and sign-up limits hold even when many people register at once. Guests reuse the existing QR check-in flow and stay out of revenue figures.",
+      "Built role-based partner teams across the auth service, API gateway, events service and partner dashboard. Partners invite people by email as read-only Members or Admins who can edit existing events, with access enforced on the server and every role change audited.",
       "Fixed the travel insurance flow so customers could get quotes again, and rebuilt its booking forms to the Figma design with per-field validation and consistent layout.",
       "Built verified partner payouts with Paystack: a searchable list of every Nigerian bank, and account names resolved on the server before anything is saved, with clear errors for partners.",
       "Built a CSV export of event purchases for the finance team, covering every order with payment type, add-ons, fees and check-in status, restricted to super admins.",
@@ -43,7 +44,7 @@ export const experience: Role[] = [
     company: "Echo",
     companyUrl: "https://www.echo-ng.com/",
     title: "Front-End Engineer",
-    period: "Oct 2025 – Sep 2026",
+    period: "Oct 2025 – Oct 2026",
     location: "Lagos",
     description:
       "A social impact platform that helps leaders gather feedback from their communities and rewards positive action.",
