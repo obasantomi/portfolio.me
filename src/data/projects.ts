@@ -57,6 +57,15 @@ export const projects: Project[] = [
           "Access is checked on the server on every request, so a role change takes effect on the person's next click. The events service resolves each request to owner, team admin or member and answers a Member's write with a clear read-only error. I kept the team admin role separate from Tramango's own platform admin so the two can never be confused, and every role change is written to an audit log.",
           "The invitation flow works whether or not the invitee already has a Tramango account: they accept while signed in, sign in and come back, or create an account on the spot through the auth service, with Google sign-in returning them to the invitation too. On the web app I added a Team tab, a page listing the partners you belong to, and a read-only mode where edit actions explain why they're unavailable. The work spans the auth service, the API gateway, the events service and the partner dashboard, with tests for each role.",
         ],
+        screens: [
+          {
+            src: "/images/tramango-partner-team.png",
+            alt: "Team tab on a partner's event page, with an invite form offering Member or Admin roles and a list of team members",
+            caption: "Partners invite teammates as Members or Admins and can change a role straight from the list.",
+            width: 1568,
+            height: 438,
+          },
+        ],
       },
       {
         title: "Rebuilding travel insurance on the Allianz API",
