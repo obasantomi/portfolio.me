@@ -23,6 +23,24 @@ export const experience: Role[] = [
     caseStudySlug: "tramango",
   },
   {
+    company: "Hebron Startup Lab",
+    companyUrl: "https://startup.covenantuniversity.edu.ng",
+    title: "Lead, Technical Infrastructure",
+    period: "Aug 2026 – Present",
+    location: "Ota",
+    current: true,
+    description:
+      "Covenant University's startup accelerator: student founders building companies, and the talents who build with them.",
+    highlights: [
+      "Lead the technical infrastructure behind HSL Hub, the platform the community runs on, from the API and database to the member app, admin dashboard and public pages.",
+      "Grew a one-week MVP into a platform for founders and talents, with founder-reviewed join requests, a discipline-based People directory and public pages for the weekly community meetings.",
+      "Restructured the community model mid-build without re-onboarding anyone, migrating every member automatically.",
+      "Set the standard for how the platform fails: typed error codes, traceable request IDs and clear recovery for users.",
+    ],
+    stack: ["React", "TypeScript", "Express", "PostgreSQL", "Prisma", "Firebase Auth", "Sanity"],
+    caseStudySlug: "hsl-hub",
+  },
+  {
     company: "LeadSage Africa",
     companyUrl: "https://www.leadsageafrica.com/",
     title: "Full-Stack Engineer",
