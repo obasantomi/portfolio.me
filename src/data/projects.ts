@@ -231,10 +231,10 @@ export const projects: Project[] = [
       "Project evaluation workflows that score submissions and explain what to improve.",
       "Progress tracking and a skill radar, backed by PostgreSQL, so learners can see measurable growth.",
       "Authentication and protected sessions with NextAuth.",
-      "Cloudinary storage for dataset uploads, submissions and generated files.",
+      "CSV downloads rebuilt on demand from each project's stored World Bank query.",
       "A scrollytelling landing page built with Framer Motion.",
     ],
-    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Gemini", "Cloudinary", "Tailwind CSS", "Recharts"],
+    stack: ["Next.js", "TypeScript", "Prisma", "PostgreSQL", "NextAuth", "Gemini", "Zod", "Tailwind CSS", "Recharts"],
     links: {
       live: "https://analytica-app-flame.vercel.app/",
       github: "https://github.com/obasantomi/Analytica-app.git",
@@ -245,10 +245,42 @@ export const projects: Project[] = [
     gallery: [
       { src: "/images/analytica-dashboard.png", alt: "Analytica learner dashboard" },
       { src: "/images/analytica-new.png", alt: "Starting a new AI-generated project in Analytica" },
-      { src: "/images/analytica-details.png", alt: "Analytica project brief and dataset details" },
-      { src: "/images/analytica-feedback.png", alt: "AI feedback on a submitted Analytica project" },
     ],
     demo: { capId: "11ynd1y4shjcvz4", title: "Analytica product walkthrough" },
+    spotlights: [
+      {
+        title: "From raw public data to a real brief",
+        paragraphs: [
+          "Every project starts with real numbers. Analytica picks an indicator, a country and a time window from the World Bank Data API, cleans the rows and summarises them: the range, the extremes and the trend. Gemini turns that summary into a short business brief, one falsifiable hypothesis and five to seven questions, each tagged with the skill it trains and a hint.",
+          "AI output that drives a page has to be dependable, so the questions are generated against a JSON schema built from the same Zod schema that validates them. Anything malformed is rejected instead of rendering half a project. Projects store only the dataset query, not the data, so a learner's CSV download is rebuilt from the source on demand.",
+        ],
+        screens: [
+          {
+            src: "/images/analytica-details.png",
+            alt: "An Analytica project brief with its dataset details, hypothesis and questions",
+            caption: "A generated project: the brief, the dataset and the questions to answer.",
+            width: 3420,
+            height: 2146,
+          },
+        ],
+      },
+      {
+        title: "Feedback that adds up to a skill profile",
+        paragraphs: [
+          "When a learner submits, a second Gemini pass reviews their answers the way a senior analyst would. It returns a structured result: an overall grade, a score and feedback for each of five areas (cleaning, visualisation, storytelling, statistical awareness and insight), and an ideal answer for every question.",
+          "Those scores feed a skill radar that should show growth, not the last attempt. Each new score is blended into the learner's history as a moving average, so one great or poor project nudges the profile instead of resetting it. The mentor beside each project is grounded the same way: it only reasons from that project's dataset summary and says so when a question needs more data than it has.",
+        ],
+        screens: [
+          {
+            src: "/images/analytica-feedback.png",
+            alt: "Analytica AI feedback with an overall grade and per-skill scores",
+            caption: "The review: an overall grade, scores per skill and feedback on every answer.",
+            width: 3420,
+            height: 2146,
+          },
+        ],
+      },
+    ],
   },
   {
     slug: "leadsage",

@@ -4,6 +4,7 @@ import { HiArrowLeft, HiArrowRight } from "react-icons/hi2";
 import { CapInlineVideo } from "@/components/media/CapVideo";
 import { RevealImage } from "@/components/media/RevealImage";
 import { SystemTrace } from "@/components/project/SystemTrace";
+import { CaseStudyGuide, type GuideSection } from "@/components/project/CaseStudyGuide";
 import { ButtonLink, Container, StackList, cx } from "@/components/ui/primitives";
 import type { Project, Screen, Spotlight } from "@/types";
 
@@ -107,9 +108,24 @@ function SpotlightSection({ spotlight, id }: { spotlight: Spotlight; id: string 
   );
 }
 
+/** Case studies with enough sections to navigate get the floating section guide. */
+const GUIDE_MIN_SECTIONS = 3;
+
+function guideSections(project: Project): GuideSection[] | null {
+  const sections: GuideSection[] = [
+    { id: "overview-title", label: "Overview" },
+    ...(project.spotlights ?? []).map((spotlight, index) => ({ id: `spotlight-${index + 1}`, label: spotlight.title })),
+    ...(project.gallery.length > 0 ? [{ id: "gallery-title", label: "Inside the product" }] : []),
+  ];
+  return sections.length >= GUIDE_MIN_SECTIONS ? sections : null;
+}
+
 export function CaseStudy({ project, nextProject }: { project: Project; nextProject: Project }) {
+  const sections = guideSections(project);
+
   return (
     <article>
+      {sections ? <CaseStudyGuide title={project.title} sections={sections} /> : null}
       <Container className="pt-28 md:pt-32">
         <Link
           href="/work"
@@ -209,7 +225,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
         ) : null}
       </Container>
 
-      <Link href={`/work/${nextProject.slug}`} className="group block border-t border-line">
+      <Link id="next-case-study" href={`/work/${nextProject.slug}`} className="group block border-t border-line">
         <Container className="flex items-end justify-between gap-6 py-16 md:py-24">
           <div>
             <p className="text-sm text-muted">Next case study</p>
