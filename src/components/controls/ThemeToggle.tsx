@@ -2,9 +2,10 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { useTheme } from "next-themes";
-import { useSyncExternalStore } from "react";
+import { useCallback, useSyncExternalStore } from "react";
 import { HiMoon, HiSun } from "react-icons/hi2";
 import { EASE_OUT } from "@/lib/motion";
+import { useAudio } from "@/components/providers/AudioProvider";
 
 const subscribeNoop = () => () => {};
 
@@ -21,11 +22,44 @@ export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
   const mounted = useHasMounted();
   const isDark = !mounted || resolvedTheme === "dark";
+  const { playThemeSound } = useAudio();
+
+  /*
+   * The new theme is revealed as a circle growing out of the bottom-left
+   * corner (keyframes in globals.css). Inside the View Transition callback we
+   * only swap the theme class, which is instant, so the animation starts on
+   * the click. next-themes then records the choice once the reveal is running.
+   */
+  const switchTheme = useCallback(() => {
+    const next = isDark ? "light" : "dark";
+    const root = document.documentElement;
+    const applyClass = () => {
+      root.classList.toggle("dark", next === "dark");
+      root.style.colorScheme = next;
+    };
+
+    playThemeSound(next);
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || typeof document.startViewTransition !== "function") {
+      applyClass();
+      setTheme(next);
+      return;
+    }
+
+    root.dataset.themeTransition = "";
+    const transition = document.startViewTransition(applyClass);
+    transition.updateCallbackDone.then(() => setTheme(next));
+    transition.finished.finally(() => {
+      delete root.dataset.themeTransition;
+    });
+  }, [isDark, playThemeSound, setTheme]);
 
   return (
     <button
       type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
+      data-tap-sound="off"
+      onClick={switchTheme}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       className="relative grid size-10 place-items-center overflow-hidden rounded-full text-muted transition-colors duration-150 hover:bg-surface-2 hover:text-fg active:scale-95"
     >
